@@ -2,53 +2,68 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-SKILL_NAME="git-workflow"
-SKILL_SOURCE="$SCRIPT_DIR/$SKILL_NAME/SKILL.md"
 
 usage() {
   echo "Usage: $0 [reasonix|codex|claude|opencode|all]"
   echo ""
-  echo "  reasonix   Install for Reasonix  (~/.reasonix/skills/git-workflow/SKILL.md)"
-  echo "  codex      Install for Codex     (~/.agents/skills/git-workflow/SKILL.md, ~/.codex/skills/git-workflow/SKILL.md)"
-  echo "  claude     Install for Claude    (~/.claude/skills/git-workflow/SKILL.md)"
-  echo "  opencode   Install for OpenCode  (~/.config/opencode/skills/git-workflow/SKILL.md)"
+  echo "  reasonix   Install for Reasonix  (~/.reasonix/skills)"
+  echo "  codex      Install for Codex     (~/.agents/skills, ~/.codex/skills)"
+  echo "  claude     Install for Claude    (~/.claude/skills)"
+  echo "  opencode   Install for OpenCode  (~/.config/opencode/skills)"
   echo "  all        Install for all supported tools"
   exit 1
 }
 
 TARGET="${1:-reasonix}"
 
-install_skill_dir() {
-  local target_dir="$1"
+skill_names() {
+  local skill_dir
 
-  mkdir -p "$target_dir"
-  cp "$SKILL_SOURCE" "$target_dir/SKILL.md"
+  for skill_dir in "$SCRIPT_DIR"/*; do
+    if [ -f "$skill_dir/SKILL.md" ]; then
+      basename "$skill_dir"
+    fi
+  done | sort
+}
+
+install_all_skills_to() {
+  local target_root="$1"
+  local label="$2"
+  local skill_name
+  local source_dir
+  local target_dir
+
+  mkdir -p "$target_root"
+
+  while IFS= read -r skill_name; do
+    source_dir="$SCRIPT_DIR/$skill_name"
+    target_dir="$target_root/$skill_name"
+
+    rm -rf "$target_dir"
+    cp -R "$source_dir" "$target_dir"
+    echo "Installed $skill_name for $label: $target_dir"
+  done < <(skill_names)
 }
 
 install_reasonix() {
-  install_skill_dir "$HOME/.reasonix/skills/$SKILL_NAME"
-  echo "Installed for Reasonix: ~/.reasonix/skills/$SKILL_NAME/SKILL.md"
+  install_all_skills_to "$HOME/.reasonix/skills" "Reasonix"
 }
 
 install_codex() {
-  install_skill_dir "$HOME/.agents/skills/$SKILL_NAME"
-  install_skill_dir "$HOME/.codex/skills/$SKILL_NAME"
-  echo "Installed for Codex: ~/.agents/skills/$SKILL_NAME/SKILL.md"
-  echo "Installed for Codex compatibility: ~/.codex/skills/$SKILL_NAME/SKILL.md"
+  install_all_skills_to "$HOME/.agents/skills" "Codex"
+  install_all_skills_to "$HOME/.codex/skills" "Codex compatibility"
 }
 
 install_claude() {
-  install_skill_dir "$HOME/.claude/skills/$SKILL_NAME"
-  echo "Installed for Claude: ~/.claude/skills/$SKILL_NAME/SKILL.md"
+  install_all_skills_to "$HOME/.claude/skills" "Claude"
 }
 
 install_opencode() {
-  install_skill_dir "$HOME/.config/opencode/skills/$SKILL_NAME"
-  echo "Installed for OpenCode: ~/.config/opencode/skills/$SKILL_NAME/SKILL.md"
+  install_all_skills_to "$HOME/.config/opencode/skills" "OpenCode"
 }
 
-if [ ! -f "$SKILL_SOURCE" ]; then
-  echo "Missing skill source: $SKILL_SOURCE" >&2
+if [ -z "$(skill_names)" ]; then
+  echo "No skills found under $SCRIPT_DIR" >&2
   exit 1
 fi
 

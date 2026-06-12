@@ -7,8 +7,6 @@ description: >
   (2) Pull Request를 생성하거나 리뷰할 때
   (3) 브랜치를 생성하거나 전환할 때
   (4) 변경사항을 커밋할 때
-allowed_tools: []
-run_as: inline
 ---
 
 # Git Workflow Rules

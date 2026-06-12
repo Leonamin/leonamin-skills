@@ -5,6 +5,7 @@ Reusable skills for AI agentic coding tools.
 ## Skills
 
 - `git-workflow`: Git branch, commit, push, and pull request rules.
+- `swarm`: Role-separated orchestration for complex or high-risk work.
 
 ## Layout
 
@@ -14,6 +15,12 @@ Each skill lives in its own directory and uses `SKILL.md`.
 skills/
   git-workflow/
     SKILL.md
+  swarm/
+    SKILL.md
+    references/
+      artifacts.md
+      decision-rules.md
+      role-prompts.md
   install.sh
 ```
 
@@ -38,9 +45,8 @@ Install all supported targets:
 
 ## Target Paths
 
-- Codex: `~/.agents/skills/git-workflow/SKILL.md`
-- Codex compatibility: `~/.codex/skills/git-workflow/SKILL.md`
-- Claude Code: `~/.claude/skills/git-workflow/SKILL.md`
-- Reasonix: `~/.reasonix/skills/git-workflow/SKILL.md`
-- OpenCode: `~/.config/opencode/skills/git-workflow/SKILL.md`
-
+- Codex: `~/.agents/skills/<skill-name>/`
+- Codex compatibility: `~/.codex/skills/<skill-name>/`
+- Claude Code: `~/.claude/skills/<skill-name>/`
+- Reasonix: `~/.reasonix/skills/<skill-name>/`
+- OpenCode: `~/.config/opencode/skills/<skill-name>/`
