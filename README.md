@@ -6,6 +6,7 @@ Reusable skills for AI agentic coding tools.
 
 - `git-workflow`: Git branch, commit, push, and pull request rules.
 - `mentor-debugging`: Explain development errors and fixes like a senior mentor.
+- `multi-work-orchestrator`: Coordinate multiple related tasks across branches and worktrees.
 - `swarm`: Role-separated orchestration for complex or high-risk work.
 
 ## Layout
@@ -17,6 +18,10 @@ skills/
   git-workflow/
     SKILL.md
   mentor-debugging/
+    SKILL.md
+    agents/
+      openai.yaml
+  multi-work-orchestrator/
     SKILL.md
     agents/
       openai.yaml
