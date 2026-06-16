@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Product"
+  short_description: "Project-scoped design OS guardrails"
+  default_prompt: "Use $design-product to initialize or evolve a repo-scoped design system for this project."

@@ -41,6 +41,7 @@ install_all_skills_to() {
 
     rm -rf "$target_dir"
     cp -R "$source_dir" "$target_dir"
+    find "$target_dir" \( -name "__pycache__" -o -name "*.pyc" \) -exec rm -rf {} +
     echo "Installed $skill_name for $label: $target_dir"
   done < <(skill_names)
 }

@@ -4,6 +4,7 @@ Reusable skills for AI agentic coding tools.
 
 ## Skills
 
+- `design-product`: Repo-scoped Design Product OS for AI-assisted product design.
 - `git-workflow`: Git branch, commit, push, and pull request rules.
 - `mentor-debugging`: Explain development errors and fixes like a senior mentor.
 - `multi-work-orchestrator`: Coordinate multiple related tasks across branches and worktrees.
@@ -15,6 +16,23 @@ Each skill lives in its own directory and uses `SKILL.md`.
 
 ```text
 skills/
+  design-product/
+    SKILL.md
+    agents/
+      openai.yaml
+    references/
+      audit.md
+      design-system.md
+      figma.md
+      init.md
+      memory.md
+      screen.md
+    scripts/
+      audit_design_product.py
+      init_design_product.py
+      propose_design_change.py
+      render_context.py
+      update_memory.py
   git-workflow/
     SKILL.md
   mentor-debugging/
