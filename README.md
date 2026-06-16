@@ -5,6 +5,7 @@ Reusable skills for AI agentic coding tools.
 ## Skills
 
 - `git-workflow`: Git branch, commit, push, and pull request rules.
+- `mentor-debugging`: Explain development errors and fixes like a senior mentor.
 - `swarm`: Role-separated orchestration for complex or high-risk work.
 
 ## Layout
@@ -15,6 +16,10 @@ Each skill lives in its own directory and uses `SKILL.md`.
 skills/
   git-workflow/
     SKILL.md
+  mentor-debugging/
+    SKILL.md
+    agents/
+      openai.yaml
   swarm/
     SKILL.md
     references/
