@@ -7,9 +7,9 @@ usage() {
   echo "Usage: $0 [reasonix|codex|claude|opencode|all]"
   echo ""
   echo "  reasonix   Install for Reasonix  (~/.reasonix/skills)"
-  echo "  codex      Install for Codex     (~/.agents/skills, ~/.codex/skills)"
+  echo "  codex      Install for Codex     (~/.agents/skills)"
   echo "  claude     Install for Claude    (~/.claude/skills)"
-  echo "  opencode   Install for OpenCode  (~/.config/opencode/skills, ~/.config/opencode/agents)"
+  echo "  opencode   Install for OpenCode  (~/.agents/skills)"
   echo "  all        Install for all supported tools"
   exit 1
 }
@@ -49,9 +49,13 @@ install_reasonix() {
   install_all_skills_to "$HOME/.reasonix/skills" "Reasonix"
 }
 
+install_codex_compatible() {
+  local label="${1:-Codex}"
+  install_all_skills_to "$HOME/.agents/skills" "$label"
+}
+
 install_codex() {
-  install_all_skills_to "$HOME/.agents/skills" "Codex"
-  install_all_skills_to "$HOME/.codex/skills" "Codex compatibility"
+  install_codex_compatible "Codex"
 }
 
 install_claude() {
@@ -59,44 +63,11 @@ install_claude() {
 }
 
 install_opencode() {
-  install_all_skills_to "$HOME/.config/opencode/skills" "OpenCode"
-  install_opencode_agents
+  install_codex_compatible "OpenCode"
 }
 
-AGENTS_DIR="$SCRIPT_DIR/../agents"
-
-agent_names() {
-  local agent_dir
-  for agent_dir in "$AGENTS_DIR"/*; do
-    if [ -f "$agent_dir" ]; then
-      basename "$agent_dir"
-    fi
-  done | sort
-}
-
-install_opencode_agents() {
-  local target_root="$HOME/.config/opencode/agents"
-  local agent_name
-  local source_file
-  local target_file
-
-  if [ ! -d "$AGENTS_DIR" ]; then
-    echo "No agents directory found at $AGENTS_DIR, skipping"
-    return
-  fi
-
-  mkdir -p "$target_root"
-
-  while IFS= read -r agent_name; do
-    source_file="$AGENTS_DIR/$agent_name"
-    target_file="$target_root/$agent_name"
-    cp "$source_file" "$target_file"
-    echo "Installed agent $agent_name for OpenCode: $target_file"
-  done < <(agent_names)
-}
-
-if [ -z "$(skill_names)" ] && [ ! -d "$AGENTS_DIR" ]; then
-  echo "No skills or agents found under $SCRIPT_DIR" >&2
+if [ -z "$(skill_names)" ]; then
+  echo "No skills found under $SCRIPT_DIR" >&2
   exit 1
 fi
 
@@ -119,9 +90,8 @@ case "$TARGET" in
 
   all)
     install_reasonix
-    install_codex
+    install_codex_compatible "Codex/OpenCode"
     install_claude
-    install_opencode
     ;;
 
   *)

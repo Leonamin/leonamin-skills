@@ -34,7 +34,7 @@ skills/
   install.sh
 ```
 
-This layout is compatible with Codex, Claude Code, Reasonix, and OpenCode.
+This layout is compatible with Codex, Codex-compatible tools, Claude Code, and Reasonix.
 
 ## Install
 
@@ -56,7 +56,6 @@ Install all supported targets:
 ## Target Paths
 
 - Codex: `~/.agents/skills/<skill-name>/`
-- Codex compatibility: `~/.codex/skills/<skill-name>/`
+- OpenCode: same as Codex, `~/.agents/skills/<skill-name>/`
 - Claude Code: `~/.claude/skills/<skill-name>/`
 - Reasonix: `~/.reasonix/skills/<skill-name>/`
-- OpenCode: `~/.config/opencode/skills/<skill-name>/`

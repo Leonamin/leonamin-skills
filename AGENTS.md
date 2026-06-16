@@ -1,19 +1,26 @@
-# leonamin-skills Agent Rules
+# leonamin-skills Maintenance Rules
 
-## Lazy Loading
+This file is for maintaining the `leonamin-skills` repository itself.
 
-- For Git work, load the `git-workflow` skill before running Git commands.
-- For complex multi-agent work, load the `swarm` skill before orchestrating.
+If installable `AGENTS.md` or `CLAUDE.md` files are needed later, keep their source files
+in a dedicated project-root subdirectory and have `install.sh` copy them to each target.
+
+## Layout
+
 - Keep each skill as `<skill-name>/SKILL.md` at this repository root.
 - Keep each agent as `<agent-name>.md` at `../agents/`.
-- After editing a skill, agent, or `install.sh`, run:
+- Do not put skill lazy-loading rules here. Put trigger conditions in each skill's `description`.
 
-```bash
+## Verification
+
+After editing a skill, agent, or `install.sh`, run:
+
+```sh
 bash -n install.sh
 ./install.sh all
 ```
 
-## Available Agents (OpenCode)
+## Available Agents
 
 | Agent | Complexity | Flow |
 |---|---|---|
