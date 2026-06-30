@@ -23,7 +23,7 @@ description: >
   - 반드시 PR을 통해서만 병합한다.
 - **커밋 제목 접두사:** `feat:`, `fix:`, `chore:`, `docs:` 중 하나만 사용
 - **PR 제목은 대표 커밋 제목과 동일**해야 한다.
-- **PR은 반드시 `pr-create` 명령**을 사용한다. (직접 GitHub UI에서 생성 금지)
+- **PR은 반드시 `gh pr create` 명령**을 사용한다. (직접 GitHub UI에서 생성 금지)
 - **PR 본문 형식:**
   ```markdown
   ## 요약
@@ -37,7 +37,10 @@ description: >
 - `feat/*`, `fix/*`, `chore/*`, `docs/*` 브랜치에서 `main`/`master`로 직접 PR 금지
   - 저장소에 `develop` 브랜치가 있으면 feature 계열의 기본 base는 `develop`
 - `hotfix/*` 브랜치만 `main`/`master` 대상 PR 후보
-- PR 병합 방식: **무조건 squash merge**
+- PR 병합 방식: **무조건 merge commit** (squash merge 사용 금지)
+- **merge commit 제목 형식:** `<prefix>: <description>` — 예) `chore: 운영 버전 업데이트`
+  - 접두사는 커밋 제목 접두사(`feat:`, `fix:`, `chore:`, `docs:`)와 동일하게 사용
+  - GitHub가 자동 생성하는 기본 merge commit 제목을 반드시 위 형식으로 덮어쓴다
 
 ## PR 생성 전 필수 확인사항
 
