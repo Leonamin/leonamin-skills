@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Browser"
+  short_description: "Use agent-browser for web checks and screenshots"
+  default_prompt: "Use $agent-browser to inspect, interact with, or capture a web page."
