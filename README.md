@@ -6,7 +6,7 @@ Reusable skills for AI agentic coding tools.
 
 - `design-product`: Repo-scoped Design Product OS for AI-assisted product design.
 - `git-workflow`: Git branch, commit, push, and pull request rules.
-- `mentor-debugging`: Explain development errors and fixes like a senior mentor.
+- `mentor`: 개발·운영 전반의 판단과 실행을 돕는 멘토.
 - `multi-work-orchestrator`: Coordinate multiple related tasks across branches and worktrees.
 - `swarm`: Role-separated orchestration for complex or high-risk work.
 
@@ -35,7 +35,7 @@ skills/
       update_memory.py
   git-workflow/
     SKILL.md
-  mentor-debugging/
+  mentor/
     SKILL.md
     agents/
       openai.yaml

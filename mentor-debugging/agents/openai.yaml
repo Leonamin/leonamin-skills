@@ -1,4 +1,0 @@
-interface:
-  display_name: "Mentor Debugging"
-  short_description: "에러 원인과 해결을 시니어처럼 설명"
-  default_prompt: "Use $mentor-debugging to explain this development error in Korean before suggesting a fix."

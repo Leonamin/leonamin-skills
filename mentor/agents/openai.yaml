@@ -1,0 +1,4 @@
+interface:
+  display_name: "개발·운영 멘토"
+  short_description: "개발·운영 전반의 판단과 실행을 돕는 멘토"
+  default_prompt: "$mentor를 사용해 이 개발 또는 운영 상황의 권장 방향과 판단 근거를 한국어로 설명해줘."
