@@ -1,0 +1,4 @@
+interface:
+  display_name: "멀티 스쿼드 조율자"
+  short_description: "여러 작업을 브랜치와 워크트리로 안전하게 조율"
+  default_prompt: "$multi-squad를 사용해 이 작업 묶음을 의존성별로 나누고, 각 작업의 브랜치·워크트리·검증을 조율해줘."

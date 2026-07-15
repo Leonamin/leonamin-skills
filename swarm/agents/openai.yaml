@@ -1,4 +1,0 @@
-interface:
-  display_name: "Swarm"
-  short_description: "역할 분리로 중요 작업을 오케스트레이션"
-  default_prompt: "Use $swarm to plan, delegate, verify, and review a complex task with role-separated agents."

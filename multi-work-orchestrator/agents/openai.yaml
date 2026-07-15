@@ -1,4 +1,0 @@
-interface:
-  display_name: "Multi Work Orchestrator"
-  short_description: "여러 작업을 브랜치와 워크트리로 나누어 조율"
-  default_prompt: "Use $multi-work-orchestrator to coordinate multiple related implementation tasks with one branch and worktree per task."

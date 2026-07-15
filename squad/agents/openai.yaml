@@ -1,0 +1,4 @@
+interface:
+  display_name: "스쿼드 조율자"
+  short_description: "복잡한 작업을 역할별로 나누고 검증하는 조율자"
+  default_prompt: "$squad를 사용해 이 복잡한 작업을 역할별로 나누고, 비용 정책을 확인한 뒤 검증과 리뷰까지 진행해줘."

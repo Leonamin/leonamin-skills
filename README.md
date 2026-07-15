@@ -7,8 +7,8 @@ Reusable skills for AI agentic coding tools.
 - `design-product`: Repo-scoped Design Product OS for AI-assisted product design.
 - `git-workflow`: Git branch, commit, push, and pull request rules.
 - `mentor`: 개발·운영 전반의 판단과 실행을 돕는 멘토.
-- `multi-work-orchestrator`: Coordinate multiple related tasks across branches and worktrees.
-- `swarm`: Role-separated orchestration for complex or high-risk work.
+- `multi-squad`: 여러 관련 작업을 브랜치와 워크트리로 나누어 조율.
+- `squad`: 복잡하거나 위험한 작업을 역할별로 나누어 검증.
 
 ## Layout
 
@@ -39,11 +39,11 @@ skills/
     SKILL.md
     agents/
       openai.yaml
-  multi-work-orchestrator/
+  multi-squad/
     SKILL.md
     agents/
       openai.yaml
-  swarm/
+  squad/
     SKILL.md
     references/
       artifacts.md
