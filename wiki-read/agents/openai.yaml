@@ -1,0 +1,4 @@
+interface:
+  display_name: "위키 읽기"
+  short_description: "작업과 의사결정에 필요한 위키 지식을 탐색"
+  default_prompt: "$wiki-read를 사용해 이번 작업과 관련된 위키 개념과 결정 사항을 찾아 요약해줘."

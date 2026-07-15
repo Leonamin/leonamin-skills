@@ -9,6 +9,9 @@ Reusable skills for AI agentic coding tools.
 - `mentor`: 개발·운영 전반의 판단과 실행을 돕는 멘토.
 - `multi-squad`: 여러 관련 작업을 브랜치와 워크트리로 나누어 조율.
 - `squad`: 복잡하거나 위험한 작업을 역할별로 나누어 검증.
+- `wiki-read`: 작업과 의사결정에 필요한 위키 지식을 읽고 요약.
+- `wiki-setup`: 프로젝트 위키 위치와 계층 구조를 초기 설정.
+- `wiki-update`: 대화와 결정을 위키에 기록하고 갱신.
 
 ## Layout
 
@@ -49,6 +52,18 @@ skills/
       artifacts.md
       decision-rules.md
       role-prompts.md
+  wiki-read/
+    SKILL.md
+    agents/
+      openai.yaml
+  wiki-setup/
+    SKILL.md
+    agents/
+      openai.yaml
+  wiki-update/
+    SKILL.md
+    agents/
+      openai.yaml
   install.sh
 ```
 

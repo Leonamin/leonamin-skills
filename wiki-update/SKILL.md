@@ -1,179 +1,137 @@
 ---
 name: wiki-update
-description: >
-  OKF(Open Knowledge Format) 위키 관리 스킬.
-  `/wiki-update` — 대화 내용을 위키에 기록/갱신.
-  `/wiki-setup` — 기본 OKF 위키 구조를 초기화.
-  위키 경로는 `<project-root>/.agents/wiki-path` 또는 `.env`의 `WIKI_PATH`로 설정한다.
+description: "대화에서 확인된 지식, 구현 내용, 기술 결정, 장애 원인과 변경 사항을 프로젝트 위키에 기록하거나 기존 문서를 갱신할 때 사용한다. 위키 초기 설정은 하지 않으며, 위키 경로와 구조가 없으면 $wiki-setup을 안내한다. 새 문서나 하위 디렉토리를 만들 때 관련 index.md와 log.md도 함께 갱신한다."
 ---
 
-# Wiki Update — OKF 지식 관리
+# Wiki Update — OKF 위키 기록·갱신
 
-OKF(Open Knowledge Format) v0.1 기반 프로젝트 위키를 관리한다.
-구글 Cloud가 제안한 벤더 중립적 지식 표현 형식으로,
-마크다운 + YAML frontmatter의 디렉토리 트리 구조를 사용한다.
+## 역할
 
-## 1. 위키 경로 확인
+대화와 작업에서 확정된 내용을 OKF 기반 프로젝트 위키에 기록하거나 기존 문서를 갱신한다. 위키를 처음 설정하거나 작업 전에 위키를 읽는 역할은 맡지 않는다.
 
-다음 우선순위로 위키 경로를 결정한다:
+## 위키 경로와 구조 확인
 
-1. `<project-root>/.agents/wiki-path` 파일 (1순위)
-   - 파일 내용: 위키 디렉토리 경로 (절대경로 또는 프로젝트 루트 기준 상대경로)
-   - 예: `./wiki` 또는 `/home/user/my-project/docs/wiki`
-2. `<project-root>/.env` 파일의 `WIKI_PATH` 변수 (2순위)
-   - 예: `WIKI_PATH=./wiki`
-3. 위 둘 다 없으면 **사용자에게 직접 질문**한다
-   - "위키 디렉토리 경로를 입력해주세요. (예: `./wiki` 또는 `/absolute/path/to/wiki`)"
-   - 응답을 받으면 해당 경로를 `.agents/wiki-path`에 저장한다 (`.agents/` 디렉토리 자동 생성)
-4. **세션 캐시**: 한 번 확인한 경로는 세션 내 `wiki-path` 메모리에 저장해 재사용한다
+프로젝트 루트를 확인한 뒤 다음 우선순위로 위키 경로를 찾는다.
 
-### `.agents/wiki-path` 파일 형식
+1. 작업 요청에서 직접 지정한 경로
+2. <project-root>/.agents/wiki-path
+3. <project-root>/.env의 WIKI_PATH
+4. 세션에서 이미 확인한 경로
 
-```
-# 위키 경로 설정 파일 (선행 #은 주석)
-./wiki
-```
+상대 경로는 프로젝트 루트를 기준으로 해석한다.
 
-### `.env` 설정 예시
+위 경로가 없으면 직접 새 경로를 만들거나 .agents/wiki-path를 생성하지 않는다. 사용자에게 먼저 $wiki-setup을 실행하도록 안내하고, 현재 업데이트는 멈춘다.
 
-```env
-WIKI_PATH=./wiki
-```
+경로를 찾은 뒤 <project-root>/.agents/wiki-structure.md를 읽어 프로젝트별 분류와 중첩 규칙을 따른다. 구조 파일이 없으면 위키 루트 index.md와 각 상위 디렉토리 index.md를 기준으로 판단하고, 새 구조를 임의로 넓히지 않는다.
 
-## 2. 명령어: `/wiki-setup`
+## 실행 흐름
 
-기본 OKF 위키 구조를 초기화한다.
-위키 경로를 먼저 확인한 후, 해당 경로에 다음 구조를 생성한다:
+1. 대화에서 위키에 남길 확정 사실, 결정, 설명, 근거와 미확정 내용을 구분한다.
+2. 변경 대상 문서의 유형과 위치를 결정한다.
+   - concepts: 무엇인지, 어떻게 동작하는지 설명
+   - decisions: 왜 그렇게 결정했는지와 결과를 남기는 ADR
+   - references: 외부 자료, 도구와 플랫폼 정보
+3. 대상 디렉토리의 index.md와 기존 문서를 먼저 읽는다.
+4. 기존 문서가 있으면 내용을 보존하면서 갱신하고, 없으면 새 문서를 만든다.
+5. 새 문서·새 하위 디렉토리·이름 변경이 생기면 대상 디렉토리부터 위키 루트까지 각 index.md를 갱신한다.
+6. 위키 루트의 log.md에 변경 이력을 추가한다.
+7. 변경 파일, 링크와 frontmatter를 확인한다.
 
-```
-<wiki-path>/
-├── index.md              # OKF 루트 인덱스 (필수)
-├── log.md                # 변경 이력 (필수)
-├── concepts/             # 기획 개념 디렉토리
-├── decisions/            # 의사결정 기록 (ADR)
-└── references/           # 외부 레퍼런스
-```
+## 파일 규칙
 
-### 생성되는 기본 `index.md`
+모든 Markdown 위키 파일은 YAML frontmatter로 시작한다. 위키 운영 설정 파일인 .agents/wiki-structure.md는 예외다.
 
-```markdown
+### 일반 문서 frontmatter
+
+~~~yaml
 ---
-okf_version: "0.1"
-title: "{프로젝트명} Wiki"
-description: "OKF v0.1 기반 프로젝트 지식 베이스"
+type: Concept | Decision | Reference
+title: "문서 제목"
+description: "문서가 다루는 범위"
+tags: [tag1, tag2]
+timestamp: 2026-01-01
 ---
+~~~
 
-# {프로젝트명} Wiki
+- concepts 문서는 kebab-case 파일명을 사용하고 type은 Concept으로 한다.
+- decisions 문서는 3자리 번호의 ADR 파일명을 사용한다. 예: 001-tech-stack.md
+- references 문서는 kebab-case 파일명과 type Reference를 사용한다.
+- 기존 문서의 frontmatter 키와 날짜 형식을 유지한다.
+- 확정되지 않은 내용은 결정된 사실처럼 쓰지 말고 가정·질문·후속 과제로 표시한다.
 
-> OKF v0.1 준수. 사람과 AI 에이전트 모두가 읽을 수 있는 지식 베이스.
+### Decision 문서
 
-## Concepts
+decisions 문서는 다음 구조를 권장한다.
 
-(프로젝트 기획 개념을 여기에 링크합니다)
+~~~markdown
+# 001. 제목
 
-## Decisions
+## Context
 
-(ADR을 여기에 링크합니다)
+왜 이 결정을 검토했는가.
 
-## References
+## Decision
 
-(외부 레퍼런스를 여기에 링크합니다)
-```
+무엇을 선택했는가.
 
-### 생성되는 기본 `log.md`
+## Consequences
 
-```markdown
-# Log
+어떤 이점, 비용과 후속 작업이 생기는가.
 
-## {오늘 날짜}
+## Status
 
-**Wiki initialized** — OKF v0.1 구조 생성.
-```
+Accepted, Superseded 또는 Proposed
+~~~
 
-### 실행 규칙
+번호는 decisions/index.md와 기존 파일을 확인해 다음 번호를 정한다. 파일을 삭제하거나 번호를 재사용하지 않는다.
 
-- 위키 경로가 이미 존재하고 `index.md`가 있으면 **아무것도 하지 않고 종료**한다
-- `index.md`가 없으면 위 구조를 생성한다
-- 각 디렉토리에 `.gitkeep` 파일을 생성할 수도 있다 (선택)
-- 완료 시 `log.md`에 초기화 기록을 추가한다
+### index.md 갱신
 
-## 3. 명령어: `/wiki-update`
+각 디렉토리의 index.md는 해당 디렉토리의 바로 아래 항목만 링크한다.
 
-대화 내용을 위키에 기록하거나 갱신한다.
+- 문서: ./file.md
+- 하위 디렉토리: ./subdirectory/index.md
 
-### 실행 흐름
+새 문서를 concepts/example/topic.md에 만들었다면 다음을 갱신한다.
 
-1. 위키 경로 확인 (1번 절차와 동일)
-2. 사용자가 기록/갱신하려는 내용 파악
-3. 적절한 카테고리(concepts / decisions / references)와 파일명 결정
-4. 기존 파일이 있으면 읽어서 병합/갱신, 없으면 신규 생성
-5. `log.md`에 변경 이력 추가
+1. concepts/example/index.md
+2. concepts/index.md
+3. 위키 루트 index.md
 
-### 파일 작성 규칙
+중간 디렉토리의 index.md가 없으면 먼저 만들되, 기존 구조와 링크를 보존한다. index.md 안에 자신을 링크하거나 전체 위키 문서를 중복 나열하지 않는다.
 
-- **모든 파일**은 OKF YAML frontmatter로 시작한다
-  ```markdown
-  ---
-  type: Concept | Decision | Reference
-  title: "..."
-  description: "..."
-  tags: [tag1, tag2]
-  timestamp: {YYYY-MM-DD}
-  ---
-  ```
-- **Concepts**: 기획 개념, 게임 디자인, 시스템 설명 등
-  - 파일명: kebab-case (예: `core-loop.md`, `difficulty-system.md`)
-  - `type: Concept`
-- **Decisions**: ADR (Architecture Decision Record)
-  - 파일명: `{3자리번호}-{제목}.md` (예: `001-tech-stack.md`)
-  - `type: Decision`
-  - 내용: Context → Decision → Consequences 구조 권장
-- **References**: 외부 기술, 플랫폼, 도구 레퍼런스
-  - 파일명: kebab-case (예: `phaser-3.md`, `okf-spec.md`)
-  - `type: Reference`
-- **index.md 갱신**: 새 파일을 추가했다면 `index.md`의 해당 섹션에 링크를 추가한다
-- **log.md 기록**: 변경 시마다 날짜별 항목을 추가한다
-  ```markdown
-  ## {YYYY-MM-DD}
+### log.md 갱신
 
-  **{변경 요약}** — {상세 설명}:
-  - 추가/갱신/삭제한 파일 목록
-  ```
+위키 루트의 log.md에 날짜별 항목을 추가한다.
 
-### 판단 기준
+~~~markdown
+## 2026-01-01
 
-- **concepts vs decisions vs references**:
-  - "왜"에 대한 결정 → `decisions/` (ADR)
-  - "무엇"에 대한 설명 → `concepts/`
-  - "어디서 봤는지" 외부 정보 → `references/`
-- **파일 분할**: 하나의 파일에 하나의 주제. 너무 큰 주제는 하위 섹션으로 분리
-- **병합**: 기존 파일이 있으면 기존 내용을 유지하면서 추가/수정한다. 기존 내용을 덮어쓰지 않는다
+**변경 요약** — 상세 설명:
+- 추가: concepts/example.md
+- 갱신: concepts/index.md, index.md
+~~~
 
-## 4. OKF v0.1 스펙 요약
+기존 날짜 항목을 덮어쓰지 않는다. 같은 날짜에는 기존 항목 아래에 새 항목을 추가한다.
 
-| 항목 | 내용 |
-|---|---|
-| 형식 | 마크다운 파일 + YAML frontmatter의 디렉토리 트리 |
-| 필수 필드 | `type` 하나만 |
-| 권장 필드 | `title`, `description`, `tags`, `timestamp` |
-| 예약 파일 | `index.md` (디렉토리 맵), `log.md` (변경 이력) |
-| 링크 | 표준 마크다운 링크 (`[text](./path.md)`) |
-| 철학 | Minimally opinionated, Composes with existing tools, Format not platform |
+## 변경 원칙
 
-## 5. 예시 워크플로
+- 한 문서에는 하나의 주제를 둔다.
+- 기존 내용을 삭제하거나 덮어쓰지 말고 필요한 부분만 병합한다.
+- 대화에 없는 사실, 출처와 결정을 만들어내지 않는다.
+- 링크 대상이 존재하는지 확인한다.
+- index.md와 log.md를 갱신하지 못했다면 완료로 보고하지 않는다.
+- 단순히 위키를 읽거나 요약해 달라는 요청에는 이 스킬을 사용하지 말고 $wiki-read를 사용한다.
+- 위키 초기화나 구조 변경 요청에는 이 스킬을 사용하지 말고 $wiki-setup을 사용한다.
 
-### 새 Concept 추가하기
+## 예시
 
-```
-User: /wiki-update 코어 루프 문서를 작성해줘
-→ AI: wiki-path 확인 → concepts/core-loop.md 읽기(없으면 신규)
-→ AI: OKF frontmatter + 내용 작성 → index.md에 링크 추가 → log.md 기록
-```
-
-### ADR 추가하기
-
-```
-User: /wiki-update 기술 스택 결정을 ADR로 기록해줘
-→ AI: wiki-path 확인 → decisions/ 디렉토리에서 다음 번호 계산
-→ AI: 001-xxx.md 형식으로 생성 → index.md 갱신 → log.md 기록
-```
+~~~text
+사용자: $wiki-update 코어 루프와 난이도 결정을 기록해줘
+처리:
+1. wiki-path와 wiki-structure.md 확인
+2. concepts/core-loop.md 또는 기존 문서 읽기
+3. 내용 병합
+4. concepts/index.md와 루트 index.md 갱신
+5. log.md에 변경 기록
+~~~

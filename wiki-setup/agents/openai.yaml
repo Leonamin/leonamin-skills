@@ -1,0 +1,4 @@
+interface:
+  display_name: "위키 설정"
+  short_description: "프로젝트 위키 위치와 계층 구조를 초기 설정"
+  default_prompt: "$wiki-setup을 사용해 이 프로젝트의 위키 위치와 구조를 함께 정하고 초기화해줘."
