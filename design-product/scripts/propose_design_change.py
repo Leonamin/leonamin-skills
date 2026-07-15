@@ -15,7 +15,6 @@ VALID_TYPES = {
     "component",
     "pattern",
     "layout",
-    "figma",
     "code-mapping",
     "governance",
 }
@@ -42,7 +41,7 @@ def main() -> int:
     parser.add_argument("--problem", action="append", default=[], help="Problem statement.")
     parser.add_argument("--option", action="append", default=[], help="Option to consider.")
     parser.add_argument("--recommendation", default="", help="Recommended option.")
-    parser.add_argument("--affected", action="append", default=[], help="Affected file, component, or Figma page.")
+    parser.add_argument("--affected", action="append", default=[], help="Affected file, component, or screen.")
     parser.add_argument("--status", default="proposed", choices=sorted(VALID_STATUS), help="Proposal status.")
     args = parser.parse_args()
 

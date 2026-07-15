@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit a project for common Design Product OS violations."""
+"""Audit a project's GUI implementation against its design-product rules."""
 
 from __future__ import annotations
 
@@ -183,7 +183,7 @@ def scan_file(root: Path, path: Path, config: dict[str, Any]) -> list[Finding]:
 
 
 def print_text(root: Path, findings: list[Finding], has_manifest: bool) -> None:
-    print("Design Product Audit")
+    print("GUI Design Audit")
     print(f"Root: {root}")
     print(f"Manifest: {'found' if has_manifest else 'missing'}")
     print(f"Findings: {len(findings)}")

@@ -4,7 +4,9 @@ Reusable skills for AI agentic coding tools.
 
 ## Skills
 
-- `design-product`: Repo-scoped Design Product OS for AI-assisted product design.
+- `design-audit`: 기존 GUI의 문제를 감사하고 세부 개선.
+- `design-product`: 프로젝트별 제품 정체성과 디자인 시스템을 운영.
+- `figma-design`: 제품 디자인 시스템과 감사 결과를 Figma에서 구현.
 - `git-workflow`: Git branch, commit, push, and pull request rules.
 - `mentor`: 개발·운영 전반의 판단과 실행을 돕는 멘토.
 - `multi-squad`: 여러 관련 작업을 브랜치와 워크트리로 나누어 조율.
@@ -24,18 +26,29 @@ skills/
     agents/
       openai.yaml
     references/
-      audit.md
       design-system.md
-      figma.md
       init.md
       memory.md
       screen.md
     scripts/
-      audit_design_product.py
       init_design_product.py
       propose_design_change.py
       render_context.py
       update_memory.py
+  design-audit/
+    SKILL.md
+    agents/
+      openai.yaml
+    references/
+      audit.md
+    scripts/
+      audit_design.py
+  figma-design/
+    SKILL.md
+    agents/
+      openai.yaml
+    references/
+      figma.md
   git-workflow/
     SKILL.md
   mentor/

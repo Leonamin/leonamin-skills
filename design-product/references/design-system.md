@@ -1,112 +1,108 @@
-# Design System Change Loop
+# 디자인 시스템 변경 흐름
 
-Use this reference when the user wants to discuss, revise, add, remove, rename, or govern design tokens, components, patterns, visual language, Figma structure, or code mappings.
+토큰, 컴포넌트, 패턴, 시각 언어, 레이아웃과 코드 매핑을 논의·수정·추가·삭제·이름 변경하거나 관리할 때 사용한다.
 
-## Rule
+## 기본 규칙
 
-Discussion is not implementation. If the user is exploring or deciding, do not edit product UI, Figma, or token files until the decision is explicit or strongly implied.
+논의와 구현을 구분한다. 사용자가 탐색하거나 결정하는 중이면 결정이 명시되기 전까지 제품 UI 또는 토큰 파일을 수정하지 않는다.
 
-## Required Reads
+## 필수 읽기
 
-Run compact context:
+압축 컨텍스트를 렌더링한다.
 
-```bash
+~~~bash
 python3 <skill-dir>/scripts/render_context.py --path <repo>
-```
+~~~
 
-Then read the relevant files:
+그 다음 변경 유형에 맞는 파일을 읽는다.
 
-- Identity change: `product-brief.md`, `identity/*`
-- Token change: `system/design-tokens.json`, `system/token-taxonomy.md`
-- Component change: `components/product-components.md`, `components/component-contracts.json`, `system/component-rules.md`
-- Layout or pattern change: `system/layout-rules.md`, `patterns/*`
-- Figma system change: `system/figma-rules.md`, `references/figma.md`
-- Governance change: `system/change-workflow.md`, `memory/design-system-proposals.md`
+- 정체성 변경: product-brief.md, identity/*
+- 토큰 변경: system/design-tokens.json, system/token-taxonomy.md
+- 컴포넌트 변경: components/product-components.md, components/component-contracts.json, system/component-rules.md
+- 레이아웃·패턴 변경: system/layout-rules.md, patterns/*
+- 거버넌스 변경: system/change-workflow.md, memory/design-system-proposals.md
 
-## Loop
+## 변경 흐름
 
-1. Classify the change:
+1. 변경 유형을 분류한다.
    - identity
    - token
    - component
    - pattern
    - layout
-   - figma
    - code-mapping
    - governance
-2. State the problem in product terms.
-3. Identify the affected files, Figma pages, and code components.
-4. Offer 2-3 options with tradeoffs.
-5. Recommend one option.
-6. Record the proposal with `scripts/propose_design_change.py`.
-7. Wait for a decision when the user is still discussing.
-8. Apply only the accepted scope.
-9. Run audit or explain why it is not applicable.
-10. Update memory and proposal status.
+2. 문제를 제품 관점의 언어로 표현한다.
+3. 영향을 받는 파일과 코드 컴포넌트를 확인한다.
+4. 트레이드오프가 있는 2~3개 선택지를 제시한다.
+5. 하나를 권장한다.
+6. scripts/propose_design_change.py로 제안을 기록한다.
+7. 사용자가 아직 결정 중이면 기다린다.
+8. 승인된 범위만 적용한다.
+9. 승인된 변경을 적용한다.
+10. memory와 제안 상태를 갱신하고, 세부 GUI 감사가 필요하면 `$design-audit`으로 넘긴다.
 
-## Component Change Spec
+## 컴포넌트 변경 명세
 
-For each product component proposal, define:
+제품 컴포넌트 제안에는 다음을 정의한다.
 
-- Purpose
-- When to use
-- When not to use
-- Anatomy
-- Content model
-- States and variants
-- Token bindings
-- Layout behavior
-- Accessibility requirements
-- Figma mapping
-- Code mapping
-- Anti-patterns
+- 목적
+- 사용할 때
+- 사용하지 않을 때
+- 구성
+- 콘텐츠 모델
+- 상태와 변형
+- 토큰 연결
+- 레이아웃 동작
+- 접근성 요구사항
+- 코드 매핑
+- 안티패턴
 
-## Token Change Spec
+## 토큰 변경 명세
 
-For token proposals, define:
+토큰 제안에는 다음을 정의한다.
 
-- Semantic role
-- Existing token to replace or extend
-- Affected components
-- Allowed values
-- Forbidden one-off values
-- Figma variable mapping
-- Code mapping
-- Migration notes
+- 의미상 역할
+- 교체·확장할 기존 토큰
+- 영향을 받는 컴포넌트
+- 허용 값
+- 금지된 일회성 값
+- 코드 매핑
+- 마이그레이션 메모
 
-## Decision States
+## 결정 상태
 
-- Proposed: captured but not adopted.
-- Accepted: apply to source-of-truth files and memory.
-- Rejected: add rationale to rejected patterns or proposal notes.
-- Deferred: keep as a known question.
+- Proposed: 기록되었지만 채택하지 않음
+- Accepted: 진실의 원천 파일과 memory에 적용
+- Rejected: 거부 이유를 기록
+- Deferred: 알려진 질문으로 유지
 
-## Response Shape
+## 응답 형식
 
-Use this shape for design-system discussion:
+디자인 시스템 논의에는 다음 형식을 사용한다.
 
-```txt
-Change Type
+~~~text
+변경 유형
 component
 
-Problem
-The current product card is a primitive Card composition, so the product language is not reusable.
+문제
+현재 제품 카드가 원시 Card 조합이라 제품 언어로 재사용되지 않는다.
 
-Options
-1. Rename only.
-2. Create a product component boundary.
-3. Redesign the entire pattern.
+선택지
+1. 이름만 바꾼다.
+2. 제품 컴포넌트 경계를 만든다.
+3. 전체 패턴을 다시 설계한다.
 
-Recommendation
-Option 2.
+권장
+2번.
 
-Affected Files
+영향 파일
 - design-product/components/product-components.md
 - design-product/components/component-contracts.json
-- relevant UI component files
+- 관련 UI 컴포넌트 파일
 
-Decision Needed
-Confirm whether to adopt Option 2 before implementation.
-```
+결정 필요
+구현 전에 2번을 채택할지 확인한다.
+~~~
 
-If the user directly asks to implement the change, treat the decision as accepted and continue through audit and memory.
+사용자가 직접 구현을 요청하면 결정을 수락한 것으로 보고 변경과 memory 갱신까지 진행한다. 기존 GUI의 세부 검토는 `$design-audit`, Figma 구현은 `$figma-design`으로 넘긴다.

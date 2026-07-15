@@ -113,7 +113,6 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--path", default=".", help="Project root to initialize.")
     parser.add_argument("--project-name", default="", help="Override detected project name.")
-    parser.add_argument("--figma-url", default="", help="Figma file URL to store in manifest.")
     parser.add_argument("--force", action="store_true", help="Overwrite existing design-product files.")
     args = parser.parse_args()
 
@@ -152,23 +151,10 @@ def main() -> int:
             "currentState": "design-product/memory/current-design-state.md",
             "proposals": "design-product/memory/design-system-proposals.md",
         },
-        "figma": {
-            "fileUrl": args.figma_url,
-            "requiredPages": [
-                "00 Brand Board",
-                "01 Foundations",
-                "02 Components",
-                "03 Product Patterns",
-                "04 Screens",
-                "99 Rejected Patterns",
-            ],
-        },
         "hardRules": {
             "noRawHexOutsideTokens": True,
             "noCardInCard": True,
             "maxRadius": "24px",
-            "requirePlanBeforeFigmaWrite": True,
-            "requireAutoLayoutInFigma": True,
             "requireMemoryUpdateAfterDesignDecision": True,
         },
         "detectedStack": detected,
@@ -316,9 +302,8 @@ The product should not feel like:
 2. IA before visual design.
 3. Product components over primitive components.
 4. Tokens before one-off styling.
-5. Figma output must be editable, named, and structured.
-6. Audit every meaningful design change.
-7. Record durable decisions in repo memory.
+5. Design artifacts must be named, structured, and reusable.
+6. Record durable decisions in repo memory.
 """,
         "design-product/system/design-tokens.json": json_dumps(token_data),
         "design-product/system/token-taxonomy.md": """# Token Taxonomy
@@ -372,19 +357,18 @@ Weak:
 """,
         "design-product/system/change-workflow.md": """# Change Workflow
 
-Use this loop for changes to identity, tokens, components, layouts, patterns, Figma structure, and code mappings.
+Use this loop for changes to identity, tokens, components, layouts, patterns, and code mappings.
 
 ## Loop
 
 1. Classify the change.
 2. State the problem in product terms.
-3. Identify affected source-of-truth files, code components, and Figma pages.
+3. Identify affected source-of-truth files and code components.
 4. Compare 2-3 options with tradeoffs.
 5. Recommend one option.
 6. Record the proposal in `memory/design-system-proposals.md`.
 7. Apply only the accepted scope.
-8. Audit the result.
-9. Update design memory.
+8. Update design memory.
 
 ## Decision states
 
@@ -393,16 +377,7 @@ Use this loop for changes to identity, tokens, components, layouts, patterns, Fi
 - Rejected
 - Deferred
 
-Discussion alone should not mutate tokens, components, code, or Figma.
-""",
-        "design-product/system/figma-rules.md": """# Figma Rules
-
-- Use native frames, auto layout, variables, styles, components, and variants.
-- Name pages using the manifest page list.
-- Name layers by domain role.
-- Do not flatten screens into screenshots except as temporary references.
-- Do not write to Figma before the IA/component plan exists.
-- Keep rejected explorations on `99 Rejected Patterns` when useful.
+Discussion alone should not mutate tokens, components, or code.
 """,
         "design-product/system/ai-anti-patterns.md": """# AI Anti-Patterns
 
@@ -426,7 +401,7 @@ Discussion alone should not mutate tokens, components, code, or Figma.
 - Use product-specific components
 - Use tokens
 - Explain why repeated containers exist
-- Audit after creation
+- Review after creation and hand off detailed GUI work to `design-audit`.
 """,
         "design-product/components/primitives.md": f"""# Primitive Components
 
@@ -455,7 +430,6 @@ Each product component should define:
 - Token bindings
 - Layout behavior
 - Accessibility requirements
-- Figma mapping
 - Code mapping
 - Anti-patterns
 
@@ -471,7 +445,7 @@ Replace these candidates with domain-specific names after product discovery.
         "design-product/components/component-contracts.json": json_dumps({"components": [], "status": "draft"}),
         "design-product/patterns/screen-planning.md": """# Screen Planning Pattern
 
-Before UI or Figma work, define:
+Before UI work, define:
 
 - Screen type
 - User goal
@@ -524,10 +498,9 @@ Design Product OS initialized. Product identity is still draft.
 ```
 
 ## Active constraints
-- Plan before UI or Figma writes.
+- Plan before UI writes.
 - Use proposal-before-change for design-system changes.
 - Use tokens and product components.
-- Audit meaningful design changes.
 """,
         "design-product/memory/decision-log.md": f"""# Decision Log
 
@@ -545,7 +518,7 @@ Add rejected patterns here with reasons so future sessions avoid them.
 """,
         "design-product/memory/design-system-proposals.md": """# Design System Proposals
 
-Use this file for proposed, accepted, rejected, and deferred changes to identity, tokens, components, layout rules, patterns, Figma structure, or code mappings.
+Use this file for proposed, accepted, rejected, and deferred changes to identity, tokens, components, layout rules, patterns, or code mappings.
 """,
         "design-product/audits/design-lint.config.json": json_dumps(
             {
@@ -569,15 +542,14 @@ No audit has been run yet.
 """,
         "design-product/agent-instructions.md": """# Agent Instructions
 
-For design, UI, component, or Figma work in this repo:
+For design, UI, or component work in this repo:
 
 1. Read `design-product/manifest.json`.
 2. Read the relevant source-of-truth files listed in the manifest.
-3. Produce an IA/component plan before writing UI or Figma nodes.
+3. Produce an IA/component plan before writing UI.
 4. For design-system changes, record a proposal before mutating source-of-truth files.
 5. Use product components over primitive UI composition.
-6. Run `audit_design_product.py` after meaningful code edits.
-7. Update `design-product/memory/` after durable decisions.
+6. Update `design-product/memory/` after durable decisions.
 """,
     }
 
@@ -598,7 +570,7 @@ For design, UI, component, or Figma work in this repo:
             print(f"  = {Path(path).relative_to(root)}")
         if len(skipped) > 20:
             print(f"  ... {len(skipped) - 20} more")
-    print("Next: answer brand interview gaps, then run audit_design_product.py.")
+    print("Next: answer brand interview gaps, then refine the source-of-truth files before handing off to design-audit or figma-design.")
     return 0
 
 

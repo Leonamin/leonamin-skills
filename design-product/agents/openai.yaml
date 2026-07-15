@@ -1,4 +1,4 @@
 interface:
-  display_name: "Design Product"
-  short_description: "Project-scoped design OS guardrails"
-  default_prompt: "Use $design-product to initialize or evolve a repo-scoped design system for this project."
+  display_name: "제품 디자인"
+  short_description: "프로젝트별 디자인 시스템과 제품 UI 운영"
+  default_prompt: "$design-product를 사용해 이 프로젝트의 제품 정체성, 디자인 시스템과 UI 작업 흐름을 점검하거나 초기화해줘."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Figma 디자인"
+  short_description: "디자인 시스템과 감사 결과를 Figma로 구현"
+  default_prompt: "$figma-design을 사용해 design-product와 design-audit 결과를 Figma에서 편집 가능한 화면으로 구현해줘."
