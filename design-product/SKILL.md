@@ -1,6 +1,6 @@
 ---
 name: design-product
-description: "프로젝트의 제품 정체성과 디자인 시스템을 처음 구축하거나 크게 다시 설계할 때 사용한다. 제품 브리프, 디자인 토큰, 제품 컴포넌트, 레이아웃 규칙, 디자인 거버넌스와 저장소 기반 기억을 초기화·재정의한다. 기존 GUI의 세부 조정에는 $design-audit, Figma 구현에는 $figma-design을 사용한다."
+description: "프로젝트의 제품 정체성과 디자인 시스템을 처음 구축하거나 크게 다시 설계할 때 사용한다. 제품 브리프, 디자인 토큰, 제품 컴포넌트, 레이아웃 규칙, 디자인 거버넌스와 저장소 기반 기억을 초기화·재정의한다. DESIGN.md가 산출물이거나 변경 대상이면 $manage-design-md를 함께 사용한다. 기존 GUI의 세부 조정에는 $design-audit, Figma 구현에는 $figma-design을 사용한다."
 ---
 
 # 제품 디자인 시스템
@@ -22,6 +22,7 @@ description: "프로젝트의 제품 정체성과 디자인 시스템을 처음 
 
 - 기존 GUI를 세밀하게 검토하거나 작은 범위로 개선: $design-audit
 - 디자인 시스템과 감사 결과를 바탕으로 Figma에서 구현: $figma-design
+- Google Labs 형식의 `DESIGN.md` 생성·갱신·lint: $manage-design-md
 - 단순한 CSS 한 줄 수정이나 제품 맥락이 없는 임시 화면: 필요한 규칙만 읽고 이 스킬의 전체 초기화는 실행하지 않는다.
 
 의존 방향은 다음과 같다.
@@ -30,9 +31,10 @@ description: "프로젝트의 제품 정체성과 디자인 시스템을 처음 
 design-product ──────┐
                      ├→ figma-design
 design-audit ────────┘
+design-product ──────→ manage-design-md
 ~~~
 
-실제 사용에서는 design-audit과 figma-design이 design-product의 결과물을 읽는다. design-product 자체는 Figma나 특정 디자인 도구를 필수로 요구하지 않는다.
+`manage-design-md`는 독립 스킬이며 하위 호출이 아니다. `DESIGN.md`가 필요한 작업에서는 같은 작업에 두 스킬을 함께 적용한다. design-product는 제품 의사결정을 맡고, manage-design-md는 근거 기반 문서화와 Google 형식 검증을 맡는다.
 
 ## 주요 작업
 
@@ -54,6 +56,7 @@ design-audit ────────┘
 - 디자인 시스템 논의·변경: references/design-system.md를 읽고 scripts/propose_design_change.py로 제안 기록
 - 작은 화면·컴포넌트 개선: 직접 구현하지 말고 필요하면 $design-audit으로 넘긴다.
 - 디자인 기억 업데이트: scripts/update_memory.py --path <repo> 사용 후 references/memory.md 읽기
+- `DESIGN.md`를 새로 만들거나 갱신: `$manage-design-md`를 적용하고 해당 스킬의 lint 절차를 완료한다.
 
 ## 권장 흐름
 
@@ -83,6 +86,7 @@ design-audit ────────┘
 - 오래 유지할 결정은 design-product/memory/에 기록한다.
 - 사용자가 논의 중인 변경은 제안과 결정이 분명해지기 전까지 적용하지 않는다.
 - 디자인 감사와 시각적 검증은 별도 스킬의 책임으로 구분하고, 필요한 경우 결과를 인계한다.
+- `DESIGN.md`가 요청된 경우 범용 `design-product/` 템플릿만으로 완료하지 않는다. `$manage-design-md`가 만든 루트 `DESIGN.md`와 lint 결과를 완료 산출물에 포함한다.
 
 ## 명령
 
@@ -126,3 +130,4 @@ python3 <skill-dir>/scripts/update_memory.py --path . \
 - 적용한 제품 정체성·토큰·컴포넌트·레이아웃 결정
 - 추가한 디자인 기억 항목
 - $design-audit 또는 $figma-design으로 넘길 후속 작업
+- DESIGN.md를 만들거나 바꿨다면 $manage-design-md의 lint 결과와 Known Gaps

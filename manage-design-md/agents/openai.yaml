@@ -1,0 +1,4 @@
+interface:
+  display_name: "Manage DESIGN.md"
+  short_description: "Create, update, and validate DESIGN.md"
+  default_prompt: "Use $manage-design-md to create or update a validated DESIGN.md from this product evidence."
