@@ -1,0 +1,4 @@
+interface:
+  display_name: "소프트웨어 공학 리뷰"
+  short_description: "Review tests errors complexity and maintainability"
+  default_prompt: "$engineering-practices-review를 사용해 이 코드의 유지보수성과 테스트 품질을 리뷰해줘."

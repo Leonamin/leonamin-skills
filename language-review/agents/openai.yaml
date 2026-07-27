@@ -1,0 +1,4 @@
+interface:
+  display_name: "언어 품질 리뷰"
+  short_description: "Review language semantics and tool diagnostics"
+  default_prompt: "$language-review를 사용해 이 코드의 언어별 오류와 관용적 개선점을 리뷰해줘."

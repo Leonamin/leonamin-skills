@@ -1,0 +1,4 @@
+interface:
+  display_name: "아키텍처 리뷰"
+  short_description: "Review module boundaries and dependency direction"
+  default_prompt: "$architecture-review를 사용해 이 변경사항의 구조와 의존성 방향을 리뷰해줘."

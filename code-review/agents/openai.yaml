@@ -1,0 +1,4 @@
+interface:
+  display_name: "코드 리뷰 오케스트레이터"
+  short_description: "Select and combine focused review perspectives"
+  default_prompt: "$code-review를 사용해 이 변경사항을 위험도와 근거 중심으로 리뷰해줘."
