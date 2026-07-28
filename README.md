@@ -7,6 +7,7 @@ Reusable skills for AI agentic coding tools.
 - `design-audit`: 기존 GUI의 문제를 감사하고 세부 개선.
 - `design-product`: 프로젝트별 제품 정체성과 디자인 시스템을 운영.
 - `figma-design`: 제품 디자인 시스템과 감사 결과를 Figma에서 구현.
+- `ui-before-after-sketch`: 구현 전 독립적인 HTML/CSS Before·After UI 시안 렌더링.
 - `git-workflow`: Git branch, commit, push, and pull request rules.
 - `mentor`: 개발·운영 전반의 판단과 실행을 돕는 멘토.
 - `multi-squad`: 여러 관련 작업을 브랜치와 워크트리로 나누어 조율.
