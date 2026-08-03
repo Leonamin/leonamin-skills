@@ -44,7 +44,8 @@ Before에 존재하지 않는 기능·데이터·배지를 만들어 문제를 �
 
 작업별 시각화 디렉터리에 `index.html`과 `styles.css`를 만든다. 저장소 소스 옆에 임시 파일을 남기지 않는다. 시각화 디렉터리는 프로젝트가 지정한 임시·산출물 위치를 우선하고, 지정이 없으면 작업 디렉터리 밖의 임시 위치를 사용한다.
 
-- 두 패널을 같은 viewport 안에 배치하고 `BEFORE`, `AFTER`를 명확히 표시한다.
+- `Before`와 `After`는 기본적으로 좌우가 아닌 상하로 배치한다. 각 패널은 viewport의 가로 폭을 최대한 사용해야 하며, 비교용 wrapper 때문에 화면이 임의로 절반으로 축소되지 않게 한다.
+- 두 패널은 같은 viewport 안에서 동일한 가로 기준으로 비교하고 `BEFORE`, `AFTER`를 명확히 표시한다. CSS에서는 `grid-template-columns: 1fr 1fr` 또는 절반 폭의 flex item을 기본값으로 사용하지 말고, `grid-template-columns: minmax(0, 1fr)`와 행 방향 배치 또는 세로 flex 레이아웃을 사용한다.
 - 실제 화면에서 확인한 문구·컬럼·상태·토큰을 재사용한다.
 - 프로젝트의 기존 색상·spacing·radius·typography를 우선 사용한다.
 - After에는 변경된 부분이 눈에 보이도록 경계, 밀도, 액션 상태를 비교한다.
