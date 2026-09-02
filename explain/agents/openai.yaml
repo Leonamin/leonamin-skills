@@ -1,0 +1,4 @@
+interface:
+  display_name: "설명"
+  short_description: "코드의 동작을 설명합니다."
+  default_prompt: "$explain를 사용해 이 코드의 동작을 설명해줘."
