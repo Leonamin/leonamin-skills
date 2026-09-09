@@ -1,4 +1,4 @@
 interface:
   display_name: "UI Before/After Sketch"
-  short_description: "빠른 HTML/CSS Before·After 시안 렌더링"
-  default_prompt: "Use $ui-before-after-sketch to create and render a concise standalone Before/After UI proposal before implementation."
+  short_description: "근거 기반 HTML/CSS Before·After 시안 비교"
+  default_prompt: "$ui-before-after-sketch 스킬을 사용해 실제 제품 소스를 수정하지 않고 근거 기반 Before·After 시안을 만들어줘."

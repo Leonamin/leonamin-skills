@@ -1,0 +1,68 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, sans-serif;
+  --sketch-canvas: #f3f4f6;
+  --sketch-border: #9ca3af;
+  --sketch-note-bg: #fffbeb;
+  --sketch-note-border: #d97706;
+  --sketch-note-text: #78350f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: #111827;
+  background: var(--sketch-canvas);
+}
+
+.sketch-document {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  width: min(100%, 1440px);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.sketch-panel {
+  min-width: 0;
+}
+
+.sketch-label {
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.ui-surface {
+  min-height: 480px;
+  overflow: hidden;
+  border: 1px solid var(--sketch-border);
+  background: #ffffff;
+}
+
+.sketch-annotation {
+  padding: 12px 16px;
+  border: 1px dashed var(--sketch-note-border);
+  color: var(--sketch-note-text);
+  background: var(--sketch-note-bg);
+  font-size: 13px;
+}
+
+.sketch-annotation p {
+  margin: 4px 0 0;
+}
+
+@media (max-width: 640px) {
+  .sketch-document {
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .ui-surface {
+    min-height: 360px;
+  }
+}
