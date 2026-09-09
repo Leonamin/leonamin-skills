@@ -1,4 +1,4 @@
 interface:
   display_name: "디자인 감사"
-  short_description: "기존 GUI를 점검하고 세밀하게 개선"
-  default_prompt: "$design-audit를 사용해 이 프로젝트 GUI의 문제를 찾아 작은 범위로 개선해줘."
+  short_description: "기존 GUI를 실제 화면과 코드 근거로 세밀하게 감사합니다."
+  default_prompt: "$design-audit 스킬을 사용해 이 프로젝트 GUI를 읽기 전용으로 감사해줘."
