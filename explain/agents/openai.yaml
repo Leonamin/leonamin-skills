@@ -1,4 +1,4 @@
 interface:
   display_name: "설명"
-  short_description: "코드의 동작을 설명합니다."
-  default_prompt: "$explain를 사용해 이 코드의 동작을 설명해줘."
+  short_description: "시각화와 인터랙션으로 복잡한 개념을 간결하게 설명합니다."
+  default_prompt: "$explain 스킬을 사용해 이 주제를 시각적이고 이해하기 쉽게 설명해줘."

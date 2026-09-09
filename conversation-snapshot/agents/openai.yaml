@@ -1,0 +1,4 @@
+interface:
+  display_name: "Conversation Snapshot"
+  short_description: "대화 상태를 이어서 작업할 수 있는 Markdown으로 정리합니다."
+  default_prompt: "$conversation-snapshot 스킬을 사용해 지금까지의 대화를 인수인계 가능한 상태 문서로 정리해줘."
