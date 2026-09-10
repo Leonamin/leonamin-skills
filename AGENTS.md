@@ -19,11 +19,3 @@ After editing a skill, agent, or `install.sh`, run:
 bash -n install.sh
 ./install.sh all
 ```
-
-## Available Agents
-
-| Agent | Complexity | Flow |
-|---|---|---|
-| `executor` (default) | 단순 | 바로 구현 |
-| `planner` | 중간 | Planner → Executor |
-| `planner` | 복잡 | Planner → Architect → Executor → Reviewer |

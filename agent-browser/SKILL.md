@@ -10,7 +10,7 @@ Use `agent-browser` as the default browser automation tool. It runs Chrome for T
 ## Environment
 
 - Confirm availability with `agent-browser --version` before the first browser task.
-- This Linux environment requires `AGENT_BROWSER_ARGS=--no-sandbox`; the user shell is configured for it already.
+- Check the operating system and runtime configuration; do not assume Linux or a preconfigured shell. Keep the browser sandbox enabled by default.
 - If Chrome is missing, run `agent-browser install`. If shared-library errors occur, use `agent-browser install --with-deps`.
 - Never expose or persist passwords, cookies, auth state, API keys, or other secrets in screenshots, logs, or committed files.
 
@@ -68,7 +68,7 @@ For authenticated testing, prefer a temporary saved state outside the repository
 
 ## Failure handling
 
-- If launch fails with `No usable sandbox`, verify `AGENT_BROWSER_ARGS` and retry with `agent-browser --args "--no-sandbox" ...`.
+- If launch fails with `No usable sandbox`, inspect the runtime and sandbox support first. Use `--no-sandbox` only in an isolated environment that explicitly requires it.
 - If a page is still loading, use `agent-browser wait --load networkidle` or wait for a specific selector.
 - If an interaction fails after a page change, snapshot again and use new refs.
 - If the browser cannot launch after dependency installation, report the exact error and environment limitation; do not silently substitute an unverified screenshot method.

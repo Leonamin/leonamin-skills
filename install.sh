@@ -26,6 +26,37 @@ skill_names() {
   done | sort
 }
 
+# Retired skills are moved out of discovery, preserving locally edited copies.
+retire_old_skills_from() {
+  local target_root="$1"
+  local skill_name
+  local expected_heading
+  local target_dir
+  local backup_dir=""
+
+  while IFS='|' read -r skill_name expected_heading; do
+    target_dir="$target_root/$skill_name"
+    [ -f "$target_dir/SKILL.md" ] || continue
+    if ! grep -Fqx -- "$expected_heading" "$target_dir/SKILL.md"; then
+      echo "Preserved unrecognized skill: $target_dir"
+      continue
+    fi
+    if [ -z "$backup_dir" ]; then
+      backup_dir="$(mktemp -d "${target_root%/}/../leonamin-retired-skills.XXXXXX")"
+    fi
+    mv "$target_dir" "$backup_dir/$skill_name"
+    echo "Retired $skill_name to $backup_dir/$skill_name"
+  done <<'RETIRED_SKILLS'
+squad|# Squad 오케스트레이터
+multi-squad|# 다중 작업 조율자
+mentor|# 개발·운영 멘토
+architecture-review|# 아키텍처 리뷰
+language-review|# 언어 품질 리뷰
+engineering-practices-review|# 소프트웨어 공학 리뷰
+naming-rules|# 네이밍 리뷰
+RETIRED_SKILLS
+}
+
 install_all_skills_to() {
   local target_root="$1"
   local label="$2"
@@ -34,6 +65,7 @@ install_all_skills_to() {
   local target_dir
 
   mkdir -p "$target_root"
+  retire_old_skills_from "$target_root"
 
   while IFS= read -r skill_name; do
     source_dir="$SCRIPT_DIR/$skill_name"

@@ -1,133 +1,34 @@
 ---
 name: design-product
-description: "프로젝트의 제품 정체성과 디자인 시스템을 처음 구축하거나 크게 다시 설계할 때 사용한다. 제품 브리프, 디자인 토큰, 제품 컴포넌트, 레이아웃 규칙, 디자인 거버넌스와 저장소 기반 기억을 초기화·재정의한다. DESIGN.md가 산출물이거나 변경 대상이면 $manage-design-md를 함께 사용한다. 기존 GUI의 세부 조정에는 $design-audit, Figma 구현에는 $figma-design을 사용한다."
+description: 제품 정체성, 정보 구조와 디자인 시스템을 처음 정하거나 크게 재설계할 때 사용한다. 기존 디자인 근거를 우선하고 필요한 결정만 문서화한다.
 ---
 
-# 제품 디자인 시스템
+# 제품 디자인
 
-## 역할
+## 시작
 
-프로젝트를 디자인 가능한 제품 시스템으로 초기화하거나 큰 방향을 다시 세운다.
+기존 DESIGN.md, 디자인 토큰, 제품 브리프, Figma 라이브러리와 관련 화면을 확인한다. 이미 있는 문서 체계로 진행할 수 있으면 별도 디렉터리나 manifest를 만들지 않는다.
 
-- 제품 정체성과 포지셔닝
-- 정보 구조와 핵심 사용자 흐름
-- 디자인 토큰과 시각 언어
-- 제품 맥락을 가진 컴포넌트
-- 레이아웃과 콘텐츠 규칙
-- 디자인 변경 제안·결정·기억
+- 제품 목표·사용자·주요 행동을 바탕으로 정체성과 정보 구조를 정한다.
+- 기존 컴포넌트와 토큰을 우선하고, 변경이 필요한 부분에만 대안과 트레이드오프를 제시한다.
+- 논의 요청에는 제안을 제공하고, 구현 요청에는 승인된 범위를 구현한다. 이미 정한 결정을 반복 확인하지 않는다.
+- 확인하지 못한 브랜드 주장, 수치, 후기나 기능을 제품 사실로 만들지 않는다.
 
-이 스킬은 저장소 안에 지속되는 디자인 운영 기반을 만든다. 대화 기억은 임시적이며 프로젝트의 진실의 원천이 아니다.
+## 기준 문서
 
-## 다른 디자인 스킬과의 경계
+토큰과 컴포넌트 계약을 관리하는 기준을 하나로 정한다. DESIGN.md를 채택한 프로젝트에서는 `$manage-design-md`로 기록·검증하고 별도 JSON을 독립적인 기준으로 유지하지 않는다. 기존 코드 토큰 또는 Figma가 기준이면 그 관계를 먼저 확인하며 요청 없이 마이그레이션하지 않는다.
 
-- 기존 GUI를 세밀하게 검토하거나 작은 범위로 개선: $design-audit
-- 디자인 시스템과 감사 결과를 바탕으로 Figma에서 구현: $figma-design
-- Google Labs 형식의 `DESIGN.md` 생성·갱신·lint: $manage-design-md
-- 단순한 CSS 한 줄 수정이나 제품 맥락이 없는 임시 화면: 필요한 규칙만 읽고 이 스킬의 전체 초기화는 실행하지 않는다.
+기본 산출물은 기존 문서의 필요한 부분 갱신이다. 제품 브리프, 토큰, IA, 컴포넌트 중 이번 작업에 필요한 항목만 포함한다. 제안 로그·기억 파일을 매번 추가하지 않는다.
 
-의존 방향은 다음과 같다.
+## 선택적 도구
 
-~~~text
-design-product ──────┐
-                     ├→ figma-design
-design-audit ────────┘
-design-product ──────→ manage-design-md
-~~~
+기존 `design-product/` 체계를 유지하는 프로젝트에서만 다음 도구를 사용한다.
 
-`manage-design-md`는 독립 스킬이며 하위 호출이 아니다. `DESIGN.md`가 필요한 작업에서는 같은 작업에 두 스킬을 함께 적용한다. design-product는 제품 의사결정을 맡고, manage-design-md는 근거 기반 문서화와 Google 형식 검증을 맡는다.
+- 컨텍스트 조회: `python3 <skill-dir>/scripts/render_context.py --path <repo>`
+- 기존 구조 운영: [design-system.md](references/design-system.md)
+- 해당 디렉터리 체계의 초기화를 명시적으로 요청한 경우: [init.md](references/init.md)
+- 디자인 기억의 갱신을 요청한 경우: [memory.md](references/memory.md)
 
-## 주요 작업
+작은 화면 감사에는 `$design-audit`, 구현 전 비교 시안에는 `$ui-before-after-sketch`, 편집 가능한 Figma 산출물에는 `$figma-design`을 필요에 따라 사용한다. 이들을 고정된 선행 단계로 요구하지 않는다.
 
-다음 작업에는 이 스킬을 사용한다.
-
-- 새 프로젝트의 제품 정체성과 디자인 운영 기반 초기화
-- 기존 디자인 시스템을 큰 방향으로 재정의
-- 여러 화면에 걸쳐 사용할 토큰과 제품 컴포넌트 설계
-- 제품의 핵심 IA와 사용자 흐름 재구성
-- 디자인 시스템의 변경 제안과 채택 여부 기록
-- 세션이 바뀌어도 유지해야 할 디자인 결정과 금지 패턴 정리
-
-## 첫 단계
-
-스크립트 경로는 이 SKILL.md를 기준으로 해석한다.
-
-- 새 프로젝트 설정: scripts/init_design_product.py --path <repo> 실행 후 references/init.md 읽기
-- 기존 design-product/ 사용: 작업 전에 scripts/render_context.py --path <repo> 실행
-- 디자인 시스템 논의·변경: references/design-system.md를 읽고 scripts/propose_design_change.py로 제안 기록
-- 작은 화면·컴포넌트 개선: 직접 구현하지 말고 필요하면 $design-audit으로 넘긴다.
-- 디자인 기억 업데이트: scripts/update_memory.py --path <repo> 사용 후 references/memory.md 읽기
-- `DESIGN.md`를 새로 만들거나 갱신: `$manage-design-md`를 적용하고 해당 스킬의 lint 절차를 완료한다.
-
-## 권장 흐름
-
-1. **프로젝트와 제품 맥락 확인**
-   - 기존 UI 스택, 주요 사용자, 제품 목적과 현재 디자인 문제를 확인한다.
-2. **정체성 정의**
-   - 제품 브리프, 포지셔닝, 시각 언어와 반정체성 규칙을 정리한다.
-3. **IA와 제품 컴포넌트 계획**
-   - 화면을 만들기 전에 사용자 목표, 주요 행동, 콘텐츠 계층과 제품 컴포넌트를 정의한다.
-4. **시스템화**
-   - 토큰, 컴포넌트 계약, 레이아웃과 콘텐츠 규칙을 저장소에 기록한다.
-5. **변경 승인**
-   - 큰 변경은 2~3개 선택지와 트레이드오프를 제시하고, 승인된 범위만 적용한다.
-6. **인계**
-   - 세부 GUI 조정은 $design-audit으로, Figma 구현은 $figma-design으로 넘길 수 있도록 결과물과 결정 사항을 정리한다.
-
-## 필수 운영 규칙
-
-- 모든 디자인 시스템 작업 전에 design-product/manifest.json을 읽는다. 아직 없으면 초기화 명령을 먼저 실행한다.
-- 작업과 관련된 진실의 원천 파일만 읽는다.
-- IA·컴포넌트 계획을 만들기 전에는 UI 코드를 수정하지 않는다.
-- 원시 UI 조합보다 제품 맥락을 가진 컴포넌트를 우선한다.
-- shadcn, Radix, MUI, Chakra, Tailwind 같은 라이브러리는 원시 재료이지 제품의 디자인 언어 자체가 아니다.
-- 기존 프로젝트 관례를 따르되, 명시된 하드 룰과 충돌하면 충돌을 설명한다.
-- 가짜 후기, 수치, 브랜드, 목적지, 인증·규정 준수 주장과 신뢰 표식을 만들지 않는다.
-- 실제 제품이 SaaS가 아니라면 일반적인 SaaS 페이지 구조를 사용하지 않는다.
-- 오래 유지할 결정은 design-product/memory/에 기록한다.
-- 사용자가 논의 중인 변경은 제안과 결정이 분명해지기 전까지 적용하지 않는다.
-- 디자인 감사와 시각적 검증은 별도 스킬의 책임으로 구분하고, 필요한 경우 결과를 인계한다.
-- `DESIGN.md`가 요청된 경우 범용 `design-product/` 템플릿만으로 완료하지 않는다. `$manage-design-md`가 만든 루트 `DESIGN.md`와 lint 결과를 완료 산출물에 포함한다.
-
-## 명령
-
-초기화:
-
-~~~bash
-python3 <skill-dir>/scripts/init_design_product.py --path .
-~~~
-
-압축 컨텍스트 렌더링:
-
-~~~bash
-python3 <skill-dir>/scripts/render_context.py --path .
-~~~
-
-디자인 시스템 변경 제안:
-
-~~~bash
-python3 <skill-dir>/scripts/propose_design_change.py --path . \
-  --type component \
-  --title "일반 제품 카드를 RouteSummary로 교체" \
-  --problem "운송 상세 페이지가 원시 Card 조합에 의존한다." \
-  --option "RouteSummary를 제품 컴포넌트 경계로 만든다." \
-  --recommendation "RouteSummary를 채택하고 Card는 내부 원시 컴포넌트로 둔다."
-~~~
-
-디자인 기억 추가:
-
-~~~bash
-python3 <skill-dir>/scripts/update_memory.py --path . \
-  --decision "가격 중심 제품 카드에는 컴팩트한 비교 행을 사용한다." \
-  --approved "운송 상세 페이지에는 route-summary 컴포넌트를 사용한다." \
-  --rejected "상세 페이지 안에 마케팅 카드를 중첩하지 않는다."
-~~~
-
-## 완료 결과
-
-의미 있는 작업은 다음을 포함해 마무리한다.
-
-- 생성·수정한 파일
-- 적용한 제품 정체성·토큰·컴포넌트·레이아웃 결정
-- 추가한 디자인 기억 항목
-- $design-audit 또는 $figma-design으로 넘길 후속 작업
-- DESIGN.md를 만들거나 바꿨다면 $manage-design-md의 lint 결과와 Known Gaps
+결과에는 결정과 이유, 변경 파일, 확인한 화면·검증 및 남은 가정을 보고한다.

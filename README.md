@@ -4,105 +4,30 @@ Reusable skills for AI agentic coding tools.
 
 ## Skills
 
-- `design-audit`: 기존 GUI의 문제를 감사하고 세부 개선.
-- `design-product`: 프로젝트별 제품 정체성과 디자인 시스템을 운영.
-- `figma-design`: 제품 디자인 시스템과 감사 결과를 Figma에서 구현.
-- `ui-before-after-sketch`: 구현 전 독립적인 HTML/CSS Before·After UI 시안 렌더링.
-- `git-workflow`: Git branch, commit, push, and pull request rules.
-- `mentor`: 개발·운영 전반의 판단과 실행을 돕는 멘토.
-- `multi-squad`: 여러 관련 작업을 브랜치와 워크트리로 나누어 조율.
-- `squad`: 복잡하거나 위험한 작업을 역할별로 나누어 검증.
-- `wiki-read`: 작업과 의사결정에 필요한 위키 지식을 읽고 요약.
-- `wiki-setup`: 프로젝트 위키 위치와 계층 구조를 초기 설정.
-- `wiki-update`: 대화와 결정을 위키에 기록하고 갱신.
+- `agent-browser`: 브라우저 조작과 실제 화면 검증.
+- `code-review`: 동작·언어·구조·테스트·네이밍 관점을 통합한 코드 리뷰.
+- `conversation-snapshot`: 작업을 이어가기 위한 간결한 상태 인계.
+- `design-audit`: 기존 GUI를 화면과 코드 근거로 감사.
+- `design-product`: 기존 문서를 활용한 제품 정체성·디자인 시스템 설계.
+- `explain`: 예시와 시각화로 개념 설명.
+- `figma-design`: 기존 디자인 근거를 편집 가능한 Figma 구조로 구현.
+- `git-workflow`: 프로젝트 정책에 맞는 Git 작업과 한국어 작성 규칙.
+- `manage-design-md`: DESIGN.md 작성과 형식 검증.
+- `ui-before-after-sketch`: 구현 전 HTML/CSS Before·After 비교 시안.
+- `wiki-read`: 관련 위키 지식 탐색.
+- `wiki-setup`: 위키 위치와 구조 초기 설정.
+- `wiki-update`: 확정 지식과 결정의 위키 반영.
 
 ## Layout
 
-Each skill lives in its own directory and uses `SKILL.md`.
-
-```text
-skills/
-  design-product/
-    SKILL.md
-    agents/
-      openai.yaml
-    references/
-      design-system.md
-      init.md
-      memory.md
-      screen.md
-    scripts/
-      init_design_product.py
-      propose_design_change.py
-      render_context.py
-      update_memory.py
-  design-audit/
-    SKILL.md
-    agents/
-      openai.yaml
-    references/
-      audit.md
-    scripts/
-      audit_design.py
-  figma-design/
-    SKILL.md
-    agents/
-      openai.yaml
-    references/
-      figma.md
-  git-workflow/
-    SKILL.md
-  mentor/
-    SKILL.md
-    agents/
-      openai.yaml
-  multi-squad/
-    SKILL.md
-    agents/
-      openai.yaml
-  squad/
-    SKILL.md
-    references/
-      artifacts.md
-      decision-rules.md
-      role-prompts.md
-  wiki-read/
-    SKILL.md
-    agents/
-      openai.yaml
-  wiki-setup/
-    SKILL.md
-    agents/
-      openai.yaml
-  wiki-update/
-    SKILL.md
-    agents/
-      openai.yaml
-  install.sh
-```
-
-This layout is compatible with Codex, Codex-compatible tools, Claude Code, and Reasonix.
+각 스킬은 루트의 `<skill-name>/SKILL.md`에 둔다. 필요한 참조 문서, 스크립트와 UI 메타데이터는 해당 스킬 디렉터리 안에 둔다.
 
 ## Install
 
-Install one target:
+`./install.sh codex`, `./install.sh claude`, `./install.sh reasonix`, `./install.sh opencode` 또는 `./install.sh all`을 실행한다.
 
-```bash
-./install.sh codex
-./install.sh claude
-./install.sh reasonix
-./install.sh opencode
-```
+- Codex / OpenCode: `~/.agents/skills/`
+- Claude Code: `~/.claude/skills/`
+- Reasonix: `~/.reasonix/skills/`
 
-Install all supported targets:
-
-```bash
-./install.sh all
-```
-
-## Target Paths
-
-- Codex: `~/.agents/skills/<skill-name>/`
-- OpenCode: same as Codex, `~/.agents/skills/<skill-name>/`
-- Claude Code: `~/.claude/skills/<skill-name>/`
-- Reasonix: `~/.reasonix/skills/<skill-name>/`
+설치 시 폐기한 이 저장소의 스킬은 설치 경로 밖의 백업 디렉터리로 이동한다. 이름이 같은 다른 스킬은 원본 식별 문구가 일치할 때만 이동한다. 그 외 설치 스킬은 보존한다.

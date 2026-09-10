@@ -1,50 +1,16 @@
 ---
 name: git-workflow
-description: >
-  Git 작업 전 반드시 확인해야 할 브랜치/커밋/PR 규칙.
-  다음 상황에서 반드시 이 스킬을 먼저 호출한다:
-  (1) git add / commit / push / branch / merge / rebase 등 git 명령어를 실행할 때
-  (2) Pull Request를 생성하거나 리뷰할 때
-  (3) 브랜치를 생성하거나 전환할 때
-  (4) 변경사항을 커밋할 때
+description: 브랜치 변경, 커밋, push, PR 생성과 병합 시 저장소 정책과 한국어 작성 규칙을 적용한다.
 ---
 
-# Git Workflow Rules
+# Git 작업 규칙
 
-## 기본 규칙
-
-- **커밋/PR 내용은 한국어**로 작성한다.
-- **커밋 제목과 PR 제목은 명사형 종결.** 문장형으로 끝내지 않는다.
-  - ✅ `feat: README.md 파일 수정`
-  - ❌ `feat: README.md 파일을 수정했습니다.`
-- **브랜치 이름 형식:** `feat/`, `fix/`, `chore/`, `docs/` 접두사 필수
-  - `feat/oauth-login`, `fix/npe-error`, `chore/deps-update`
-- **보호 브랜치 직접 커밋/푸시 금지:** `main`, `master`, `develop`
-  - 반드시 PR을 통해서만 병합한다.
-- **커밋 제목 접두사:** `feat:`, `fix:`, `chore:`, `docs:` 중 하나만 사용
-- **PR 제목은 대표 커밋 제목과 동일**해야 한다.
-- **PR은 반드시 `gh pr create` 명령**을 사용한다. (직접 GitHub UI에서 생성 금지)
-- **PR 본문 형식:**
-  ```markdown
-  ## 요약
-  ## 테스트
-  ## 리스크
-  ```
-
-## PR 생성 규칙
-
-- **PR base branch를 추측하지 말 것.** 사용자에게 직접 확인한다.
-- `feat/*`, `fix/*`, `chore/*`, `docs/*` 브랜치에서 `main`/`master`로 직접 PR 금지
-  - 저장소에 `develop` 브랜치가 있으면 feature 계열의 기본 base는 `develop`
-- `hotfix/*` 브랜치만 `main`/`master` 대상 PR 후보
-- PR 병합 방식: **무조건 merge commit** (squash merge 사용 금지)
-- **merge commit 제목 형식:** `<prefix>: <description>` — 예) `chore: 운영 버전 업데이트`
-  - 접두사는 커밋 제목 접두사(`feat:`, `fix:`, `chore:`, `docs:`)와 동일하게 사용
-  - GitHub가 자동 생성하는 기본 merge commit 제목을 반드시 위 형식으로 덮어쓴다
-
-## PR 생성 전 필수 확인사항
-
-1. `git branch --show-current` — 현재 브랜치 확인
-2. 저장소 로컬의 `AGENTS.md` / `CLAUDE.md` 확인
-3. 배포가 `main` push에 묶여 있는지 확인
-4. 보호 브랜치 규칙 위반 여부 확인
+- 변경 전 현재 브랜치, 작업 트리와 로컬 AGENTS.md / CLAUDE.md를 확인한다. 관련 없는 변경을 보존한다.
+- 브랜치 이름, 보호 브랜치, PR base와 병합 방식은 저장소 정책을 따른다. 문서·기존 PR·원격 설정과 사용자 지시로 확인하고, 결과에 영향을 주는 모호함이 남을 때만 묻는다.
+- 별도 정책이 없으면 main, master, develop에는 직접 커밋·push하지 않고 작업 브랜치와 PR을 사용한다.
+- 커밋마다 staged diff를 확인하고 변경 목적에 맞는 Conventional Commits 타입을 선택한다: feat, fix, refactor, chore, docs, test, ci, build, perf, revert. 명확한 영역은 짧은 scope로 표시한다.
+- 커밋과 PR 제목·본문은 한국어로 작성하고 제목은 명사형으로 끝낸다. 예: `refactor(review): 리뷰 관점 통합`.
+- PR 제목은 최종 변경 범위를 대표하도록 작성한다. 본문은 문제와 변경된 동작, 검증, 남은 위험을 포함하며 저장소 템플릿을 우선한다.
+- PR 생성 도구와 병합 방식은 환경 및 저장소 설정에 맞춘다. squash 또는 merge commit을 일괄 강제하지 않는다.
+- 하위 작업을 분리할 때 독립적인 수정 범위만 병렬화한다. 별도 브랜치나 파일 격리가 필요할 때 워크트리를 사용하며, 작업 수만으로 워크트리·중간 커밋을 강제하지 않는다.
+- 위임 결과는 실제 diff와 검증으로 확인한다. Git 작업 권한을 배포나 운영 데이터 변경 권한으로 확대하지 않는다.
