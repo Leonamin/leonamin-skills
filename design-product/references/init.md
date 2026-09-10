@@ -1,6 +1,6 @@
 # 초기화 워크플로
 
-scripts/init_design_product.py를 실행한 뒤 사용한다.
+별도 design-product/ 운영 체계의 초기화를 명시적으로 요청한 경우에만 사용한다. 기존 DESIGN.md가 기준이면 이 초기화 대신 해당 문서를 갱신한다. 아래 절차는 scripts/init_design_product.py 실행 후 적용한다.
 
 ## 목표
 

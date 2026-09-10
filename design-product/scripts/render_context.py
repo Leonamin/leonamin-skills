@@ -37,7 +37,7 @@ def main() -> int:
     if not manifest:
         print("# Design Product Context")
         print()
-        print("No design-product manifest found. Run init_design_product.py first.")
+        print("No design-product manifest found. Use existing design documents; initialization is optional.")
         return 0
 
     source = manifest.get("sourceOfTruth") or {}
