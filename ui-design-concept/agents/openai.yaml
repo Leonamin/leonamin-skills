@@ -1,0 +1,4 @@
+interface:
+  display_name: "UI Design Concept"
+  short_description: "이미지로 화면 디자인과 예외 상태를 설계하고 구현 기준 전달"
+  default_prompt: "$ui-design-concept로 요청한 화면의 디자인 시안과 필요한 빈 데이터·로딩·오류 상태를 만들고 구현에 넘길 기준을 정리해줘."

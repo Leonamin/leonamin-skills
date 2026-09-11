@@ -13,7 +13,9 @@ Reusable skills for AI agentic coding tools.
 - `figma-design`: 기존 디자인 근거를 편집 가능한 Figma 구조로 구현.
 - `git-workflow`: 프로젝트 정책에 맞는 Git 작업과 한국어 작성 규칙.
 - `manage-design-md`: DESIGN.md 작성과 형식 검증.
+- `standardize-interactive-components`: 웹 인터랙션 컴포넌트 통합과 프로젝트 정책 기반 재발 방지 검사.
 - `ui-before-after-sketch`: 구현 전 HTML/CSS Before·After 비교 시안.
+- `ui-design-concept`: 이미지 기반 화면 시안과 필요한 예외 상태 설계, 구현 기준 인계.
 - `wiki-read`: 관련 위키 지식 탐색.
 - `wiki-setup`: 위키 위치와 구조 초기 설정.
 - `wiki-update`: 확정 지식과 결정의 위키 반영.
