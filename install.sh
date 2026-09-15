@@ -4,13 +4,15 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 usage() {
-  echo "Usage: $0 [reasonix|codex|claude|opencode|all]"
+  echo "Usage: $0 [reasonix|codex|claude|opencode|antigravity|agy|all]"
   echo ""
-  echo "  reasonix   Install for Reasonix  (~/.reasonix/skills)"
-  echo "  codex      Install for Codex     (~/.agents/skills)"
-  echo "  claude     Install for Claude    (~/.claude/skills)"
-  echo "  opencode   Install for OpenCode  (~/.agents/skills)"
-  echo "  all        Install for all supported tools"
+  echo "  reasonix     Install for Reasonix     (~/.reasonix/skills)"
+  echo "  codex        Install for Codex        (~/.agents/skills)"
+  echo "  claude       Install for Claude       (~/.claude/skills)"
+  echo "  opencode     Install for OpenCode     (~/.agents/skills)"
+  echo "  antigravity  Install for Antigravity  (~/.gemini/config/skills)"
+  echo "  agy          Alias for antigravity"
+  echo "  all          Install for all supported tools"
   exit 1
 }
 
@@ -99,6 +101,10 @@ install_opencode() {
   install_codex_compatible "OpenCode"
 }
 
+install_antigravity() {
+  install_all_skills_to "$HOME/.gemini/config/skills" "Antigravity"
+}
+
 if [ -z "$(skill_names)" ]; then
   echo "No skills found under $SCRIPT_DIR" >&2
   exit 1
@@ -121,10 +127,15 @@ case "$TARGET" in
     install_opencode
     ;;
 
+  antigravity|agy)
+    install_antigravity
+    ;;
+
   all)
     install_reasonix
     install_codex_compatible "Codex/OpenCode"
     install_claude
+    install_antigravity
     ;;
 
   *)

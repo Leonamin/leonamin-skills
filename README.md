@@ -26,10 +26,11 @@ Reusable skills for AI agentic coding tools.
 
 ## Install
 
-`./install.sh codex`, `./install.sh claude`, `./install.sh reasonix`, `./install.sh opencode` 또는 `./install.sh all`을 실행한다.
+`./install.sh codex`, `./install.sh claude`, `./install.sh reasonix`, `./install.sh opencode`, `./install.sh antigravity` 또는 `./install.sh all`을 실행한다.
 
 - Codex / OpenCode: `~/.agents/skills/`
 - Claude Code: `~/.claude/skills/`
 - Reasonix: `~/.reasonix/skills/`
+- Antigravity: `~/.gemini/config/skills/`
 
 설치 시 폐기한 이 저장소의 스킬은 설치 경로 밖의 백업 디렉터리로 이동한다. 이름이 같은 다른 스킬은 원본 식별 문구가 일치할 때만 이동한다. 그 외 설치 스킬은 보존한다.
