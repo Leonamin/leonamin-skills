@@ -6,6 +6,7 @@ Reusable skills for AI agentic coding tools.
 
 - `agent-browser`: 브라우저 조작과 실제 화면 검증.
 - `code-review`: 동작·언어·구조·테스트·네이밍 관점을 통합한 코드 리뷰.
+- `component-inventory`: 프로젝트별 공용 UI 컴포넌트 범위와 누락 점검, 인벤토리 유지.
 - `conversation-snapshot`: 작업을 이어가기 위한 간결한 상태 인계.
 - `design-audit`: 기존 GUI를 화면과 코드 근거로 감사.
 - `design-product`: 기존 문서를 활용한 제품 정체성·디자인 시스템 설계.
