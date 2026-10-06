@@ -13,6 +13,7 @@ Reusable skills for AI agentic coding tools.
 - `explain`: 예시와 시각화로 개념 설명.
 - `figma-design`: 기존 디자인 근거를 편집 가능한 Figma 구조로 구현.
 - `git-workflow`: 프로젝트 정책에 맞는 Git 작업과 한국어 작성 규칙.
+- `make-prototype`: 구조·디자인·공유 컴포넌트·기능 구현·검수를 연결하는 프로토타입 제작.
 - `manage-design-md`: DESIGN.md 작성과 형식 검증.
 - `standardize-interactive-components`: 웹 인터랙션 컴포넌트 통합과 프로젝트 정책 기반 재발 방지 검사.
 - `ui-before-after-sketch`: 구현 전 HTML/CSS Before·After 비교 시안.
