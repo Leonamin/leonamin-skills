@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Prototype"
+  short_description: "구조·디자인 토큰·공유 컴포넌트부터 실제 동작 검증까지 프로토타입 구현"
+  default_prompt: "$make-prototype를 사용해 요구한 앱의 구조, 디자인, 기능 구현과 동작 검증까지 완료해줘."
