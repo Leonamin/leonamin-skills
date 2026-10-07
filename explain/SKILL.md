@@ -1,44 +1,25 @@
 ---
 name: explain
-description: Explain unfamiliar or complex topics to a smart non-expert with concise visual structure, concrete examples, and interaction when it improves understanding. Use for explanations, mental models, comparisons, walkthroughs, diagrams, or interactive explainers.
+description: 낯설거나 복잡한 개념·작동 원리·차이를 구체적인 예시와 필요한 시각 자료로 설명할 때 사용한다.
 ---
 
-# Explain
+# 설명
 
-Give the reader a correct mental model with as little cognitive overhead as possible.
+**질문에 대한 핵심 답부터 제시하고, 구체적인 예시와 작동 원리로 이해를 돕는다.**
 
-## Approach
+## 설명 기준
 
-- Start with what the topic is and why it matters.
-- Assume no domain knowledge, but do not use childish language.
-- Prefer a small concrete example before abstractions.
-- Explain the mechanism before introducing jargon; define important terms briefly.
-- Add prerequisites only when they become necessary.
-- Stop when the question is answered. Offer deeper detail instead of front-loading edge cases.
+- 독자의 배경지식에 맞춰 설명하되 유치한 표현은 피한다. 필요할 때 주제의 의미와 쓰임을 짧게 밝힌다.
+- 작은 예시로 시작해 원리와 추상 개념으로 연결한다. 전문 용어는 필요한 시점에 짧게 정의한다.
+- 질문에 답하는 데 필요한 선행 지식·예외만 포함하고, 같은 답을 도입·본문·결론에서 반복하지 않는다.
+- 단순화로 정확성을 잃지 않는다. 사실과 추론을 구분하고 단순 모델·비유의 적용 한계를 밝힌다.
 
-## Visualization
+## 시각 자료와 인터랙션
 
-Treat visualization and interaction as core explanation tools.
-
-- Show meaningful structure before describing it at length. Use a flow for a process, a diagram for relationships, a table for comparisons, and a timeline for sequences.
-- Choose the lightest representation that preserves the idea: structured Markdown, a table or text diagram, a native visualization, then self-contained HTML.
-- Use interaction when changing inputs, stepping through states, or toggling alternatives reveals the mechanism.
-- Do not replace a useful visualization with prose merely because the host lacks a native visualization tool.
-
-## Portable interactive output
-
-1. Use a native visualization or browser-preview tool when available.
-2. Otherwise create one self-contained HTML file with inline CSS and JavaScript.
-3. Avoid frameworks, package installation, build steps, and network-loaded assets.
-4. Keep controls labeled, keyboard-usable, responsive, and focused on teaching the mechanism.
-5. Open and verify the result when browser tooling is available. Otherwise provide the absolute file path and state that visual verification was unavailable.
-
-Do not create an artifact when concise Markdown explains the topic equally well.
-
-## Accuracy
-
-- Do not trade correctness for simplicity.
-- Mark where a simplified model stops being accurate.
-- Use analogies only when they clarify the mechanism, and state their limits.
-
-Do not force every explanation into the same layout or add decorative visuals that do not improve understanding.
+- 구조가 더 잘 보일 때 사용한다: 과정은 흐름도, 관계는 다이어그램, 비교는 표, 시간 순서는 타임라인. 짧은 글로 충분하면 시각 자료를 강제하지 않는다.
+- 의미를 유지하는 가장 가벼운 표현을 선택한다: Markdown·표·텍스트 도식, 도구가 제공하는 시각화, 독립 HTML.
+- 입력 변경·단계 이동·대안 전환으로 원리를 이해하기 쉬워질 때 인터랙션을 넣는다. 고정된 레이아웃이나 장식용 시각 자료는 피한다.
+- 도구가 제공하는 시각화·브라우저 미리보기를 우선한다. 필요한 시각 자료를 도구 부재만으로 생략하지 않는다.
+- 대체 HTML은 CSS·JavaScript를 포함한 단일 파일로 만든다. 프레임워크·패키지 설치·빌드·외부 네트워크 자산 없이 실행되게 한다.
+- 컨트롤은 이름이 명확하고 키보드로 조작 가능하며 화면 너비에 맞게 배치한다. 기능은 설명하려는 원리에 집중한다.
+- 브라우저 도구가 있으면 열어 렌더링과 동작을 확인한다. 없으면 절대 파일 경로와 시각 검증을 수행하지 못했다는 사실을 제공한다.
