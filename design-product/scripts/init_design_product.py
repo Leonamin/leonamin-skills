@@ -303,7 +303,7 @@ The product should not feel like:
 3. Product components over primitive components.
 4. Tokens before one-off styling.
 5. Design artifacts must be named, structured, and reusable.
-6. Record durable decisions in repo memory.
+6. Record durable decisions in repo memory when requested.
 """,
         "design-product/system/design-tokens.json": json_dumps(token_data),
         "design-product/system/token-taxonomy.md": """# Token Taxonomy
@@ -364,11 +364,11 @@ Use this loop for changes to identity, tokens, components, layouts, patterns, an
 1. Classify the change.
 2. State the problem in product terms.
 3. Identify affected source-of-truth files and code components.
-4. Compare 2-3 options with tradeoffs.
-5. Recommend one option.
-6. Record the proposal in `memory/design-system-proposals.md`.
-7. Apply only the accepted scope.
-8. Update design memory.
+4. Compare options and recommend one when a real tradeoff needs a decision.
+5. For consultation, propose the change; for implementation requests, apply the requested scope.
+6. Record the proposal in `memory/design-system-proposals.md` when requested.
+7. Verify consistency between the source of truth, code, and relevant screens.
+8. Update design memory when requested.
 
 ## Decision states
 
@@ -546,10 +546,10 @@ For design, UI, or component work in this repo:
 
 1. Read `design-product/manifest.json`.
 2. Read the relevant source-of-truth files listed in the manifest.
-3. Produce an IA/component plan before writing UI.
-4. For design-system changes, record a proposal before mutating source-of-truth files.
+3. Resolve unclear IA/component decisions before writing UI; reuse established decisions.
+4. For consultation, propose changes; for implementation requests, apply the requested scope. Record proposals only when requested.
 5. Use product components over primitive UI composition.
-6. Update `design-product/memory/` after durable decisions.
+6. Update `design-product/memory/` after durable decisions when requested.
 """,
     }
 

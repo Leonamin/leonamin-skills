@@ -1,43 +1,20 @@
-# Memory 워크플로
+# 디자인 기억 기록
 
-디자인 memory는 대화가 아니라 저장소에 둔다.
+**기억 갱신을 요청받았을 때, 이후 디자인 판단에 영향을 주는 결정과 근거만 기록한다.**
 
-## 파일
+기록 위치는 프로젝트의 기존 `design-product/memory/` 체계를 따른다.
 
-- design-product/memory/current-design-state.md: 세션 재개를 위한 현재 상태 요약
-- design-product/memory/decision-log.md: 날짜별 결정과 근거
-- design-product/memory/approved-patterns.md: 재사용할 패턴
-- design-product/memory/rejected-patterns.md: 피할 패턴과 이유
+- `current-design-state.md`: 현재 기준과 재개에 필요한 상태
+- `decision-log.md`: 결정·날짜·근거
+- `approved-patterns.md`, `rejected-patterns.md`: 재사용하거나 피할 패턴과 이유
 
-## 기록할 내용
+일상적인 구현 세부사항이나 대화 전문은 제외한다. 확인한 정체성·토큰·컴포넌트·패턴 결정과 의도적인 예외를 필요한 파일에만 반영한다.
 
-다음처럼 미래 디자인에 영향을 주는 결정을 기록한다.
-
-- 정체성 보완
-- 토큰 변경
-- 컴포넌트 이름 결정
-- 재사용할 페이지·플로우 패턴
-- 명시적인 안티패턴
-- 감사 발견 사항에 대한 의도적인 예외
-- 디자인 산출물 인계에 필요한 결정
-
-일상적인 구현 세부사항은 향후 디자인 작업에 영향을 줄 때만 기록한다.
-
-## 스크립트 사용
-
-다음처럼 항목을 추가한다.
-
-~~~bash
+```bash
 python3 <skill-dir>/scripts/update_memory.py --path <repo> \
-  --decision "상품 선택에는 편집형 비교 행을 사용한다." \
-  --approved "문맥에 맞는 신뢰 문구에는 LocalNote를 사용한다." \
-  --rejected "제품 페이지의 일반적인 3열 기능 그리드는 피한다."
-~~~
+  --decision "결정과 근거" \
+  --approved "재사용할 패턴" \
+  --rejected "피할 패턴과 이유"
+```
 
-긴 메모는 표준 입력으로 전달한다.
-
-~~~bash
-printf '%s\n' "결정 내용" | python3 <skill-dir>/scripts/update_memory.py --path <repo>
-~~~
-
-같은 작업을 계속한다면 memory를 갱신한 뒤 컨텍스트를 다시 렌더링한다.
+이번 기록에 필요한 인자만 사용한다. 긴 결정은 표준 입력으로 전달할 수 있다. 후속 작업에 요약이 필요하면 `render_context.py`로 갱신된 컨텍스트를 확인한다.
