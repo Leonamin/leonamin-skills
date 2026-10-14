@@ -1,0 +1,4 @@
+interface:
+  display_name: "Goodcase UI"
+  short_description: "동봉된 UI 컴포넌트와 디자인 토큰을 기존 프로젝트에 적용"
+  default_prompt: "$use-goodcase-ui를 사용해 필요한 컴포넌트를 고르고 프로젝트 디자인에 맞게 화면을 구현해줘."

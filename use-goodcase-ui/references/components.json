@@ -1,0 +1,482 @@
+[
+  {
+    "id": "button",
+    "name": "Button / IconButton",
+    "category": "basic",
+    "summary": "명확한 액션과 중복 실행을 막는 처리 상태",
+    "reference": "references/components/button.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "link",
+    "name": "Link",
+    "category": "basic",
+    "summary": "브라우저의 기본 이동 동작을 유지하는 링크",
+    "reference": "references/components/link.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "text-field",
+    "name": "TextField",
+    "category": "basic",
+    "summary": "레이블과 오류 설명이 연결된 한 줄 입력",
+    "reference": "references/components/text-field.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "text-area",
+    "name": "TextArea",
+    "category": "basic",
+    "summary": "높이 확장과 글자 수 표시를 지원하는 여러 줄 입력",
+    "reference": "references/components/text-area.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "checkbox",
+    "name": "Checkbox",
+    "category": "basic",
+    "summary": "독립 선택과 전체 선택의 혼합 상태",
+    "reference": "references/components/checkbox.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "radio-group",
+    "name": "RadioGroup",
+    "category": "basic",
+    "summary": "한 그룹에서 하나를 고르는 단일 선택",
+    "reference": "references/components/radio-group.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "switch",
+    "name": "Switch",
+    "category": "basic",
+    "summary": "레이블이 유지되는 설정 켜짐·꺼짐",
+    "reference": "references/components/switch.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "badge",
+    "name": "Badge",
+    "category": "basic",
+    "summary": "색상과 텍스트로 전달하는 상태 표시",
+    "reference": "references/components/badge.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "alert",
+    "name": "Alert",
+    "category": "basic",
+    "summary": "문맥에 유지되는 안내와 오류",
+    "reference": "references/components/alert.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "skeleton",
+    "name": "Skeleton",
+    "category": "basic",
+    "summary": "최종 콘텐츠 영역을 유지하는 로딩 표현",
+    "reference": "references/components/skeleton.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "progress",
+    "name": "Progress",
+    "category": "basic",
+    "summary": "확정·불확정 진행 상태",
+    "reference": "references/components/progress.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "image",
+    "name": "Image",
+    "category": "basic",
+    "summary": "이미지 비율 유지와 로딩 실패 처리",
+    "reference": "references/components/image.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "avatar",
+    "name": "Avatar",
+    "category": "basic",
+    "summary": "프로필 이미지와 이름 fallback",
+    "reference": "references/components/avatar.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "card",
+    "name": "Card",
+    "category": "basic",
+    "summary": "헤더·본문·푸터를 갖춘 콘텐츠 묶음",
+    "reference": "references/components/card.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "table",
+    "name": "Table",
+    "category": "basic",
+    "summary": "의미 구조와 좁은 화면 스크롤을 갖춘 표",
+    "reference": "references/components/table.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "pagination",
+    "name": "Pagination",
+    "category": "basic",
+    "summary": "경계와 처리 상태를 지키는 페이지 탐색",
+    "reference": "references/components/pagination.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "typography",
+    "name": "Typography",
+    "category": "foundation",
+    "summary": "일관된 제목·본문·보조 설명 계층",
+    "reference": "references/components/typography.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "stack",
+    "name": "Stack",
+    "category": "foundation",
+    "summary": "간격과 방향을 명시하는 흐름 배치",
+    "reference": "references/components/stack.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "grid",
+    "name": "Grid",
+    "category": "foundation",
+    "summary": "최소 셀 너비에 따라 자동 조정되는 그리드",
+    "reference": "references/components/grid.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "divider",
+    "name": "Divider",
+    "category": "foundation",
+    "summary": "내용 묶음 사이의 의미 있는 구분선",
+    "reference": "references/components/divider.md",
+    "files": [
+      "assets/src/components/basic/index.tsx",
+      "assets/src/styles/basic.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "select",
+    "name": "Select",
+    "category": "basic",
+    "summary": "정해진 목록에서 한 값을 확정합니다.",
+    "reference": "references/components/select.md",
+    "files": [
+      "assets/src/components/overlays/index.tsx",
+      "assets/src/styles/overlays.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "combobox",
+    "name": "Combobox",
+    "category": "basic",
+    "summary": "검색어와 확정한 선택값을 분리합니다.",
+    "reference": "references/components/combobox.md",
+    "files": [
+      "assets/src/components/overlays/index.tsx",
+      "assets/src/styles/overlays.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "menu",
+    "name": "Menu",
+    "category": "basic",
+    "summary": "선택값을 유지하지 않는 명령 목록입니다.",
+    "reference": "references/components/menu.md",
+    "files": [
+      "assets/src/components/overlays/index.tsx",
+      "assets/src/styles/overlays.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "popover",
+    "name": "Popover",
+    "category": "basic",
+    "summary": "버튼에 연결된 작은 설정·정보 패널입니다.",
+    "reference": "references/components/popover.md",
+    "files": [
+      "assets/src/components/overlays/index.tsx",
+      "assets/src/styles/overlays.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "tooltip",
+    "name": "Tooltip",
+    "category": "basic",
+    "summary": "짧은 보조 설명을 호버와 포커스로 제공합니다.",
+    "reference": "references/components/tooltip.md",
+    "files": [
+      "assets/src/components/overlays/index.tsx",
+      "assets/src/styles/overlays.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "dialog",
+    "name": "Dialog",
+    "category": "basic",
+    "summary": "배경을 차단하고 하나의 작업에 집중합니다.",
+    "reference": "references/components/dialog.md",
+    "files": [
+      "assets/src/components/overlays/index.tsx",
+      "assets/src/styles/overlays.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "drawer",
+    "name": "Drawer / Sheet",
+    "category": "basic",
+    "summary": "긴 상세·보조 작업을 화면 가장자리에 표시합니다.",
+    "reference": "references/components/drawer.md",
+    "files": [
+      "assets/src/components/overlays/index.tsx",
+      "assets/src/styles/overlays.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "tabs",
+    "name": "Tabs",
+    "category": "basic",
+    "summary": "밑줄·확장형·분할형·하단형으로 같은 콘텐츠 전환 계약을 제공합니다.",
+    "reference": "references/components/tabs.md",
+    "files": [
+      "assets/src/components/overlays/tabs.tsx",
+      "assets/src/styles/tabs.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "accordion",
+    "name": "Accordion",
+    "category": "basic",
+    "summary": "여러 설명 영역을 독립적으로 열고 닫습니다.",
+    "reference": "references/components/accordion.md",
+    "files": [
+      "assets/src/components/overlays/index.tsx",
+      "assets/src/styles/overlays.css",
+      "assets/src/styles/tokens.css"
+    ]
+  },
+  {
+    "id": "toast",
+    "name": "Toast",
+    "category": "basic",
+    "summary": "테마 표면을 따르는 알림과 하나의 시계로 동기화된 자동 닫힘 타이머",
+    "reference": "references/components/toast.md",
+    "files": [
+      "assets/src/components/overlays/toast.tsx",
+      "assets/src/styles/toast.css",
+      "assets/src/components/basic/index.tsx"
+    ]
+  },
+  {
+    "id": "form-field",
+    "name": "FormField",
+    "category": "composed",
+    "summary": "입력의 이름, 설명, 필수 여부와 오류를 연결하는 공통 필드",
+    "reference": "references/components/form-field.md",
+    "files": [
+      "assets/src/components/composed/index.tsx",
+      "assets/src/styles/composed.css"
+    ]
+  },
+  {
+    "id": "form-actions",
+    "name": "FormActions",
+    "category": "composed",
+    "summary": "중복 제출을 차단하고 실패 후 입력을 유지하는 폼 액션",
+    "reference": "references/components/form-actions.md",
+    "files": [
+      "assets/src/components/composed/index.tsx",
+      "assets/src/styles/composed.css"
+    ]
+  },
+  {
+    "id": "confirm-dialog",
+    "name": "ConfirmDialog",
+    "category": "composed",
+    "summary": "취소에서 시작하며 실패 시 열린 상태를 유지하는 확인 창",
+    "reference": "references/components/confirm-dialog.md",
+    "files": [
+      "assets/src/components/composed/index.tsx",
+      "assets/src/styles/composed.css"
+    ]
+  },
+  {
+    "id": "search-filter-bar",
+    "name": "SearchFilterBar",
+    "category": "composed",
+    "summary": "작성 중 조건과 실제 적용된 조건을 구분하는 검색 패널",
+    "reference": "references/components/search-filter-bar.md",
+    "files": [
+      "assets/src/components/composed/index.tsx",
+      "assets/src/styles/composed.css"
+    ]
+  },
+  {
+    "id": "data-table",
+    "name": "DataTable",
+    "category": "composed",
+    "summary": "정렬, 현재 페이지 선택, 상태 처리를 갖춘 데이터 목록",
+    "reference": "references/components/data-table.md",
+    "files": [
+      "assets/src/components/composed/index.tsx",
+      "assets/src/styles/composed.css"
+    ]
+  },
+  {
+    "id": "file-uploader",
+    "name": "FileUploader",
+    "category": "composed",
+    "summary": "파일 선택과 실제 업로드를 분리하고 파일별 실패를 복구",
+    "reference": "references/components/file-uploader.md",
+    "files": [
+      "assets/src/components/composed/index.tsx",
+      "assets/src/styles/composed.css"
+    ]
+  },
+  {
+    "id": "image-viewer",
+    "name": "ImageViewer",
+    "category": "composed",
+    "summary": "어두운 전체 화면과 썸네일 탐색을 갖춘 이미지 뷰어",
+    "reference": "references/components/image-viewer.md",
+    "files": [
+      "assets/src/components/composed/index.tsx",
+      "assets/src/styles/composed.css"
+    ]
+  },
+  {
+    "id": "image-gallery",
+    "name": "ImageGallery",
+    "category": "composed",
+    "summary": "썸네일에서 선택한 이미지로 뷰어를 여는 갤러리",
+    "reference": "references/components/image-gallery.md",
+    "files": [
+      "assets/src/components/composed/index.tsx",
+      "assets/src/styles/composed.css"
+    ]
+  },
+  {
+    "id": "async-content",
+    "name": "AsyncContent",
+    "category": "composed",
+    "summary": "최초 로딩과 기존 콘텐츠 재조회를 구분하는 상태 경계",
+    "reference": "references/components/async-content.md",
+    "files": [
+      "assets/src/components/composed/index.tsx",
+      "assets/src/styles/composed.css"
+    ]
+  },
+  {
+    "id": "copy-field",
+    "name": "CopyField",
+    "category": "composed",
+    "summary": "표시된 전체 원본값을 실제 클립보드에 복사",
+    "reference": "references/components/copy-field.md",
+    "files": [
+      "assets/src/components/composed/index.tsx",
+      "assets/src/styles/composed.css"
+    ]
+  },
+  {
+    "id": "design-tokens",
+    "name": "Design Tokens",
+    "category": "foundation",
+    "summary": "색상·타이포그래피·간격·밀도를 프로젝트에 맞게 연결하는 기준입니다.",
+    "reference": "references/components/design-tokens.md",
+    "files": [
+      "assets/src/styles/tokens.css"
+    ]
+  }
+]

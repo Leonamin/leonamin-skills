@@ -18,6 +18,7 @@ Reusable skills for AI agentic coding tools.
 - `standardize-interactive-components`: 웹 인터랙션 컴포넌트 통합과 프로젝트 정책 기반 재발 방지 검사.
 - `ui-before-after-sketch`: 구현 전 HTML/CSS Before·After 비교 시안.
 - `ui-design-concept`: 이미지 기반 화면 시안과 필요한 예외 상태 설계, 구현 기준 인계.
+- `use-goodcase-ui`: 동봉된 Goodcase UI 컴포넌트·스타일·토큰·동작 계약을 프로젝트에 적용.
 - `wiki-read`: 관련 위키 지식 탐색.
 - `wiki-setup`: 위키 위치와 구조 초기 설정.
 - `wiki-update`: 확정 지식과 결정의 위키 반영.
@@ -27,6 +28,16 @@ Reusable skills for AI agentic coding tools.
 각 스킬은 루트의 `<skill-name>/SKILL.md`에 둔다. 필요한 참조 문서, 스크립트와 UI 메타데이터는 해당 스킬 디렉터리 안에 둔다.
 
 ## Install
+
+다른 프로젝트의 폴더에서 Goodcase UI만 설치하려면:
+
+```sh
+pnpm dlx skills add Leonamin/leonamin-skills --skill use-goodcase-ui -a codex -y
+```
+
+전체 프로젝트에서 사용하려면 `-g`를 추가한다. 설치한 Codex 세션에서 `$use-goodcase-ui`로 사용한다. 컴포넌트 코드와 참조 문서까지 함께 설치되므로 Goodcase 원본 프로젝트 경로를 제공할 필요가 없다. [Skills CLI 옵션](https://github.com/vercel-labs/skills#options)
+
+`use-goodcase-ui`는 [Leonamin/goodcase](https://github.com/Leonamin/goodcase)에서 생성한 배포본이다. 이 폴더를 직접 수정하지 말고 Goodcase 원본을 수정한 뒤 `pnpm build:skill --output <이 저장소 경로>/use-goodcase-ui`로 갱신한다. 버전·내용 해시는 `use-goodcase-ui/manifest.json`에서 확인한다.
 
 `./install.sh codex`, `./install.sh claude`, `./install.sh reasonix`, `./install.sh opencode`, `./install.sh antigravity` 또는 `./install.sh all`을 실행한다.
 
