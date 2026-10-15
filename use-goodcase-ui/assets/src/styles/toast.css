@@ -44,13 +44,13 @@
   box-shadow: var(--gc-toast-shadow, 0 3px 10px #1720331f);
   padding: 0;
   overflow: visible;
-  animation: gc-toast-enter-up 180ms ease both;
+  animation: gc-toast-enter-up var(--gc-toast-enter-duration) ease both;
 }
 .gc-toast[data-direction="down"] {
   animation-name: gc-toast-enter-down;
 }
 .gc-toast[data-phase="closing"] {
-  animation: gc-toast-exit 180ms ease both;
+  animation: gc-toast-exit var(--gc-toast-exit-duration) ease both;
 }
 .gc-toast-content {
   padding: var(--gc-space-4);
@@ -257,7 +257,6 @@
     transition: none !important;
   }
 }
-
 .gc-toast-viewport[data-empty="true"] {
   visibility: hidden;
   pointer-events: none;

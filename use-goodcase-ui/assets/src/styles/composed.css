@@ -32,19 +32,6 @@
   gap: var(--gc-space-2);
   flex-wrap: wrap;
 }
-.gc-c-input {
-  width: 100%;
-  min-height: var(--gc-control-height);
-  border: 1px solid var(--gc-border);
-  border-radius: var(--gc-radius-sm);
-  padding: var(--gc-space-2) var(--gc-space-3);
-  font: inherit;
-  background: var(--gc-surface);
-  color: var(--gc-text);
-}
-.gc-c-input[aria-invalid="true"] {
-  border-color: var(--gc-danger);
-}
 .gc-filter-bar {
   display: flex;
   align-items: flex-end;
@@ -61,11 +48,8 @@
   background: var(--gc-surface-subtle);
   border-radius: var(--gc-radius);
 }
-.gc-c-skeleton {
-  height: 20px;
-  background: var(--gc-border);
+.gc-async > .gc-skeleton {
   margin-bottom: var(--gc-space-3);
-  border-radius: var(--gc-radius-sm);
 }
 .gc-table-scroll {
   overflow: auto;
@@ -96,7 +80,6 @@
   padding: 0 !important;
   min-height: 28px !important;
   font: inherit;
-  cursor: pointer;
 }
 .gc-dropzone {
   border: 1px dashed var(--gc-border);
@@ -105,15 +88,13 @@
   display: grid;
   gap: var(--gc-space-3);
   text-align: center;
-  cursor: pointer;
 }
 .gc-dropzone.is-dragging {
   background: var(--gc-accent-soft);
   border-color: var(--gc-accent);
 }
-.gc-dropzone input {
-  max-width: 100%;
-  margin: auto;
+.gc-dropzone > .gc-button {
+  justify-self: center;
 }
 .gc-upload-list {
   list-style: none;

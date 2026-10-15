@@ -4,7 +4,7 @@
 
 ## 소스와 스타일
 
-코드는 `../assets/src/components/`, 스타일은 `../assets/src/styles/`에 있다. 대상 프로젝트의 공용 UI 경로에 필요한 파일을 복사하고 상대 import를 맞춘다. 배포본의 `src/` 구조를 유지하면 모듈 간 상대 import도 유지된다. 같은 파일의 다른 export가 필요하지 않다면 관련 타입과 내부 helper를 확인한 뒤 추출한다.
+코드는 `../assets/src/components/`, 스타일은 `../assets/src/styles/`에 있다. 대상 프로젝트의 공용 UI 경로에 개별 문서의 ‘포함 코드와 공유 스타일’에 나온 파일을 복사하고 상대 import를 맞춘다. 구현은 컴포넌트별로 분리되어 있으며 `index`는 기존 import 경로를 위한 재수출이다. 배포본의 `src/` 구조를 유지하면 직접 의존성의 상대 import도 유지된다.
 
 스타일 순서는 tokens → global → basic → overlays → tabs → toast → composed다. 컴포넌트군별로 공유하는 스타일이므로 필요한 규칙과 해당 미디어 쿼리·keyframes를 함께 옮긴다. 반복 이식 시 같은 CSS를 중복 추가하지 않는다.
 

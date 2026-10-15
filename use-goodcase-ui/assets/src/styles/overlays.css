@@ -27,6 +27,15 @@
   outline: 2px solid var(--gc-focus);
   outline-offset: 2px;
 }
+.gc-select > span:first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.gc-select > span:last-child {
+  flex-shrink: 0;
+}
 .gc-combobox-input input {
   width: 100%;
   min-width: 0;
@@ -63,6 +72,10 @@
   font-size: var(--gc-text-base);
   cursor: pointer;
   outline: none;
+}
+.gc-option > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .gc-option[data-highlighted],
 .gc-option.is-highlighted {
@@ -248,6 +261,42 @@
   padding: 0 var(--gc-space-4) var(--gc-space-4);
   line-height: 1.7;
   color: var(--gc-text-muted);
+}
+.gc-accordion-animated [role="region"] {
+  overflow: hidden;
+}
+.gc-accordion-animated [role="region"][data-state="open"] {
+  animation: gc-accordion-expand var(--gc-accordion-duration)
+    var(--gc-accordion-easing);
+}
+.gc-accordion-animated [role="region"][data-state="closed"] {
+  animation: gc-accordion-collapse var(--gc-accordion-duration)
+    var(--gc-accordion-easing);
+}
+@keyframes gc-accordion-expand {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+@keyframes gc-accordion-collapse {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gc-accordion-animated [role="region"] {
+    animation: none !important;
+  }
 }
 .gc-overlay-note {
   font-size: var(--gc-text-sm);
