@@ -10,7 +10,7 @@ import {
 } from "react";
 import { Toast as RToast } from "radix-ui";
 import { Check, Info, TriangleAlert, CircleAlert, X } from "lucide-react";
-import { Button, IconButton } from "../basic";
+import { Button, IconButton } from "../basic/button";
 export type ToastMessage = {
   title: string;
   description?: string;
@@ -88,8 +88,9 @@ function ToastBody({
             cx="12"
             cy="12"
             r="9"
-            strokeDasharray={56.55}
-            strokeDashoffset={56.55 * (1 - ratio)}
+            pathLength={100}
+            strokeDasharray={100}
+            strokeDashoffset={100 * (1 - ratio)}
           />
         </svg>
       )}
@@ -193,7 +194,6 @@ function LiveToast({
   const [isPaused, setIsPaused] = useState(isHidden);
   const [isClosing, setIsClosing] = useState(false);
   const isClosingRef = useRef(false);
-  const closingTimeout = useRef(0);
   const dismissRef = useRef(onDismiss);
   dismissRef.current = onDismiss;
   const close = useCallback(() => {
@@ -206,8 +206,21 @@ function LiveToast({
       return;
     }
     setIsClosing(true);
-    closingTimeout.current = window.setTimeout(() => dismissRef.current(), 180);
   }, []);
+  useLayoutEffect(() => {
+    if (!isClosing) return;
+    const animations = cardRef.current?.getAnimations() ?? [];
+    let isActive = true;
+    // CSS owns the exit duration, including overrides and animation:none.
+    void Promise.all(
+      animations.map((animation) => animation.finished.catch(() => {})),
+    ).then(() => {
+      if (isActive) dismissRef.current();
+    });
+    return () => {
+      isActive = false;
+    };
+  }, [isClosing]);
   const sync = useCallback(() => {
     const current = clock.current;
     const now = performance.now();
@@ -252,7 +265,7 @@ function LiveToast({
     ) {
       animationRef.current = element.animate(
         message.timer === "circle"
-          ? [{ strokeDashoffset: "0" }, { strokeDashoffset: "56.55" }]
+          ? [{ strokeDashoffset: "0" }, { strokeDashoffset: "100" }]
           : [{ transform: "scaleX(1)" }, { transform: "scaleX(0)" }],
         { duration: total, fill: "forwards", easing: "linear" },
       );
@@ -263,7 +276,6 @@ function LiveToast({
     sync();
     return () => {
       clearTimeout(clock.current.timeout);
-      clearTimeout(closingTimeout.current);
       animationRef.current?.cancel();
     };
   }, [total, isPersistent, message.timer, sync]);
@@ -287,7 +299,7 @@ function LiveToast({
         if (message.timer === "circle")
           timerRef.current.setAttribute(
             "stroke-dashoffset",
-            String(56.55 * (1 - ratio)),
+            String(100 * (1 - ratio)),
           );
         else
           (timerRef.current as HTMLElement).style.transform =

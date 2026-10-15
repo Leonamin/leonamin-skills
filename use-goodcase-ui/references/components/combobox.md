@@ -8,6 +8,7 @@
 - 선택값과 검색어를 별도 관리, 취소하면 기존 선택 표시
 - 한글 IME 조합 중 Enter를 선택으로 처리하지 않음
 - 로딩 중 확정 차단, 결과 없음과 비활성 옵션 지원
+- options가 교체되거나 검색 결과가 바뀌면 현재 활성 옵션을 유효한 결과에 맞춥니다. 결과가 없으면 aria-activedescendant를 생략합니다.
 - Trigger 주변과 overflow 컨테이너 안쪽에 --gc-focus-clearance(기본 6px) 이상의 포커스 안전 여백을 확보합니다.
 
 ## 상태
@@ -28,22 +29,16 @@
 
 ## 직접 관련 파일
 
-- assets/src/components/overlays/index.tsx
+- assets/src/components/overlays/combobox.tsx
 - assets/src/styles/overlays.css
 - assets/src/styles/tokens.css
 
 ## 포함 코드와 공유 스타일
 
-- assets/src/components/basic/index.tsx
-- assets/src/components/overlays/index.tsx
-- assets/src/components/overlays/tabs.tsx
-- assets/src/components/overlays/toast.tsx
-- assets/src/styles/basic.css
-- assets/src/styles/composed.css
+- assets/src/components/overlays/combobox.tsx
+- assets/src/components/overlays/types.ts
 - assets/src/styles/global.css
 - assets/src/styles/overlays.css
-- assets/src/styles/tabs.css
-- assets/src/styles/toast.css
 - assets/src/styles/tokens.css
 
 상대 import와 공유 모듈의 다른 export 때문에 직접 사용하는 컴포넌트보다 범위가 넓을 수 있습니다.
@@ -63,29 +58,20 @@ lucide-react, radix-ui, react, react-dom
 
 ## 코드 위치
 
-- Option: assets/src/components/overlays/index.tsx:19-19
-- Select: assets/src/components/overlays/index.tsx:20-78
-- Combobox: assets/src/components/overlays/index.tsx:79-254
-- MenuItem: assets/src/components/overlays/index.tsx:255-260
-- Menu: assets/src/components/overlays/index.tsx:261-287
-- Popover: assets/src/components/overlays/index.tsx:288-314
-- Tooltip: assets/src/components/overlays/index.tsx:315-335
-- DialogProps: assets/src/components/overlays/index.tsx:336-348
-- Dialog: assets/src/components/overlays/index.tsx:400-402
-- Drawer: assets/src/components/overlays/index.tsx:403-405
-- DialogClose: assets/src/components/overlays/index.tsx:406-408
-- Accordion: assets/src/components/overlays/index.tsx:411-442
+- Combobox: assets/src/components/overlays/combobox.tsx:6-183
 
 ## 이식
 
-1. assets/src/components/overlays/index.tsx와 assets/src/styles/overlays.css를 함께 복사합니다. 필요한 export만 남기면 묶음에서 분리할 수 있습니다.
-2. react, react-dom, radix-ui, lucide-react를 설치하고 애플리케이션 진입점에서 CSS를 가져옵니다.
-3. assets/src/styles/tokens.css의 --gc-* 의미 토큰을 프로젝트 토큰에 연결합니다. 브랜드별 색상·폰트·밀도를 교체합니다.
-4. 상태와 이벤트를 프로젝트 데이터에 연결하고, 갤러리의 키보드·닫기·실패 계약을 이식 뒤 확인합니다.
+1. assets/src/components/overlays/combobox.tsx와 상대 import로 연결된 공용 컴포넌트·타입을 함께 복사합니다.
+2. 필요한 외부 패키지는 포함 파일의 import와 의존성 목록을 확인해 설치합니다.
+3. assets/src/styles/overlays.css와 tokens.css를 가져오고 --gc-* 토큰을 프로젝트 토큰에 연결합니다.
+4. 상태와 이벤트를 프로젝트 데이터에 연결하고, 키보드·닫기·실패 계약을 이식 뒤 확인합니다.
 
 ## 사용 예제
 
 ```tsx
+import { Combobox } from "./components/overlays/combobox";
+
 <Combobox label="지역" value={region} onValueChange={setRegion} options={options} isLoading={isLoading} />
 ```
 
