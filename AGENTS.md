@@ -3,7 +3,7 @@
 This file is for maintaining the `leonamin-skills` repository itself.
 
 If installable `AGENTS.md` or `CLAUDE.md` files are needed later, keep their source files
-in a dedicated project-root subdirectory and have `install.sh` copy them to each target.
+in a dedicated project-root subdirectory and define their installation separately from skills.
 
 ## Layout
 
@@ -13,9 +13,12 @@ in a dedicated project-root subdirectory and have `install.sh` copy them to each
 
 ## Verification
 
-After editing a skill, agent, or `install.sh`, run:
+After adding or editing a skill, verify discovery from this repository:
 
 ```sh
-bash -n install.sh
-./install.sh all
+pnpm dlx skills add . --list
 ```
+
+Keep the README skill list in sync with root `<skill-name>/SKILL.md` files.
+When changing installation instructions, verify the commands in a temporary project
+with project-scoped installation so checks do not overwrite user-level skills.
