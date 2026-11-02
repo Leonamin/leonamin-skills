@@ -9,6 +9,7 @@
 - `component-inventory`: 프로젝트별 공용 UI 컴포넌트 범위와 누락 점검, 인벤토리 유지.
 - `conversation-snapshot`: 작업을 이어가기 위한 간결한 상태 인계.
 - `design-audit`: 기존 GUI를 화면과 코드 근거로 감사.
+- `design-playground`: 레퍼런스 기반 화면의 규칙·구조를 직접 조정·비교하고 선택값을 구현에 전달.
 - `design-product`: 기존 문서를 활용한 제품 정체성·디자인 시스템 설계.
 - `explain`: 예시와 시각화로 개념 설명.
 - `figma-design`: 기존 디자인 근거를 편집 가능한 Figma 구조로 구현.
@@ -18,7 +19,6 @@
 - `manage-storybook`: Storybook 생성과 스토리 분류·상태·인터랙션·실행 환경 관리.
 - `standardize-interactive-components`: 웹 인터랙션 컴포넌트 통합과 프로젝트 정책 기반 재발 방지 검사.
 - `ui-before-after-sketch`: 구현 전 HTML/CSS Before·After 비교 시안.
-- `ui-design-concept`: 이미지 기반 화면 시안과 필요한 예외 상태 설계, 구현 기준 인계.
 - `use-goodcase-ui`: 동봉된 Goodcase UI 컴포넌트·스타일·토큰·동작 계약을 프로젝트에 적용.
 - `wiki`: 위키 지식 탐색과 요청된 기록·갱신·초기 설정.
 

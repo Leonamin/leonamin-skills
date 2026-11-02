@@ -40,4 +40,4 @@ description: 앱 프로토타입을 구조·디자인·기능 구현부터 실�
 
 ## 필요한 스킬만 적용
 
-디자인·IA는 `$design-product`, 공용 UI 범위는 `$component-inventory`, DESIGN.md 관리는 `$manage-design-md`, 인터랙션 통합은 `$standardize-interactive-components`, 화면 감사는 `$design-audit`, 코드 검토는 `$code-review`, 브라우저 검증은 환경의 도구나 `$agent-browser`를 사용한다. 사용 가능한 스킬을 필요한 단계에서만 읽고, 없으면 위 기준으로 수행한다. 이미지 시안·Figma·Before/After는 요청이나 시각적 불확실성이 있을 때만 추가한다.
+디자인·IA는 `$design-product`, 공용 UI 범위는 `$component-inventory`, DESIGN.md 관리는 `$manage-design-md`, 인터랙션 통합은 `$standardize-interactive-components`, 화면 감사는 `$design-audit`, 코드 검토는 `$code-review`, 브라우저 검증은 환경의 도구나 `$agent-browser`를 사용한다. 사용 가능한 스킬을 필요한 단계에서만 읽고, 없으면 위 기준으로 수행한다. 직접 조정하며 디자인을 탐색할 때만 `$design-playground`를 추가한다. 기존 선택본이 있으면 실행 원본과 값을 재사용하고 시안 전용 컨트롤을 제외한다. Figma·정적 Before/After는 요청이나 시각적 불확실성이 있을 때만 추가한다.
