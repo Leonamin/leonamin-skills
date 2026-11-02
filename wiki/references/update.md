@@ -1,22 +1,13 @@
----
-name: wiki-update
-description: 대화·구현·기술 결정·장애 분석에서 확인된 지식을 프로젝트 위키에 기록하거나 기존 문서와 인덱스·변경 로그를 갱신할 때 사용한다. 초기 설정은 wiki-setup, 읽기·요약은 wiki-read를 사용한다.
----
+# 위키 지식 기록과 갱신
 
-# 위키 갱신
+공통 경로·기존 설정을 확인한 뒤 적용한다. 경로가 없으면 자동 초기화하지 않는다.
 
-**확인된 지식을 기존 문서에 병합하고, 관련 인덱스와 변경 로그까지 갱신한다.**
-
-## 경로와 대상
-
-1. 프로젝트 루트를 확인하고 요청 경로 → `.agents/wiki-path` → `.env`의 `WIKI_PATH` → 세션에서 확인한 경로 순으로 찾는다. 상대 경로는 프로젝트 루트 기준이다.
-2. 경로가 없으면 새 경로나 설정 파일을 만들지 않고 `$wiki-setup`을 안내하며 갱신을 멈춘다.
-3. `.agents/wiki-structure.md`의 분류·중첩 규칙을 따른다. 설정이 없으면 루트와 상위 디렉토리의 `index.md`를 기준으로 판단하고 구조를 임의로 넓히지 않는다.
-4. 기록할 사실·결정·설명·근거와 미확정 내용을 구분하고 대상 인덱스·문서를 먼저 읽는다. 개념·동작은 Concept, 결정 이유·결과는 Decision(ADR), 외부 자료는 Reference로 분류한다.
+1. `.agents/wiki-structure.md`의 분류·중첩 규칙을 따른다. 설정이 없으면 루트와 상위 디렉토리의 `index.md`를 기준으로 판단하고 구조를 임의로 넓히지 않는다.
+2. 기록할 사실·결정·설명·근거와 미확정 내용을 구분하고 대상 인덱스·문서를 먼저 읽는다. 개념·동작은 Concept, 결정 이유·결과는 Decision(ADR), 외부 자료는 Reference로 분류한다.
 
 ## 문서와 인덱스
 
-문서를 만들 때 [문서 형식](references/document-formats.md)을 읽는다. 위키 Markdown은 YAML frontmatter로 시작하며 프로젝트 설정인 `.agents/wiki-structure.md`는 예외다.
+문서를 만들 때 [문서 형식](document-formats.md)을 읽는다. 위키 Markdown은 YAML frontmatter로 시작하며 프로젝트 설정인 `.agents/wiki-structure.md`는 예외다.
 
 - 한 문서에 한 주제를 다룬다. 기존 내용·frontmatter 키·날짜 형식을 보존하며 필요한 부분만 병합한다.
 - Concept·Reference는 kebab-case 파일명, Decision은 `001-tech-stack.md`처럼 3자리 번호를 쓴다. ADR 번호는 기존 파일·인덱스에서 다음 번호를 정하며 삭제·재사용하지 않는다.

@@ -20,9 +20,7 @@
 - `ui-before-after-sketch`: 구현 전 HTML/CSS Before·After 비교 시안.
 - `ui-design-concept`: 이미지 기반 화면 시안과 필요한 예외 상태 설계, 구현 기준 인계.
 - `use-goodcase-ui`: 동봉된 Goodcase UI 컴포넌트·스타일·토큰·동작 계약을 프로젝트에 적용.
-- `wiki-read`: 관련 위키 지식 탐색.
-- `wiki-setup`: 위키 위치와 구조 초기 설정.
-- `wiki-update`: 확정 지식과 결정의 위키 반영.
+- `wiki`: 위키 지식 탐색과 요청된 기록·갱신·초기 설정.
 
 ## Install
 
@@ -43,7 +41,7 @@ pnpm dlx skills add Leonamin/leonamin-skills -g -a codex --skill '*' -y
 특정 스킬만 설치하려면 `--skill`에 이름을 지정한다.
 
 ```sh
-pnpm dlx skills add Leonamin/leonamin-skills -g -a codex --skill code-review wiki-read -y
+pnpm dlx skills add Leonamin/leonamin-skills -g -a codex --skill code-review wiki -y
 ```
 
 `-g`를 빼면 현재 프로젝트에만 설치한다. 다른 도구는 `-a`에 `claude-code`, `opencode`, `reasonix`, `antigravity` 등을 지정한다. 여러 도구를 함께 지정할 수도 있다. 설치 후 에이전트에 스킬 이름과 수행할 작업을 요청한다.
