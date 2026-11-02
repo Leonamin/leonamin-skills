@@ -1,0 +1,4 @@
+interface:
+  display_name: "프로젝트 위키"
+  short_description: "위키 지식 탐색과 요청된 기록·갱신·초기 설정"
+  default_prompt: "$wiki를 사용해 이번 작업에 필요한 위키 지식과 결정을 찾아 요약해줘."
