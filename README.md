@@ -46,6 +46,24 @@ pnpm dlx skills add Leonamin/leonamin-skills -g -a codex --skill code-review wik
 
 `-g`를 빼면 현재 프로젝트에만 설치한다. 다른 도구는 `-a`에 `claude-code`, `opencode`, `reasonix`, `antigravity` 등을 지정한다. 여러 도구를 함께 지정할 수도 있다. 설치 후 에이전트에 스킬 이름과 수행할 작업을 요청한다.
 
+### Antigravity
+
+Antigravity App·CLI·IDE는 전역 스킬을 `~/.gemini/config/skills/`, 작업 공간 스킬을 `<workspace-root>/.agents/skills/`에서 읽는다. Skills CLI는 버전을 지정하지 않으면 실행할 때마다 최신 버전을 확인하므로 그대로 실행한다.
+
+```sh
+pnpm dlx skills add Leonamin/leonamin-skills -g -a antigravity --skill '*' -y
+```
+
+- Antigravity 경로는 Skills CLI 1.8.1부터 `~/.gemini/config/skills/`로 통일되었다. 1.8.1 미만이 실행되면 `~/.gemini/antigravity/skills/`, `~/.gemini/antigravity-cli/skills/`에 설치된다. `pnpm dlx skills --version`으로 확인하고, 필요하면 `pnpm dlx skills@latest ...`로 최신 버전을 강제한다.
+- 기존 `install.sh` 설치본이나 1.8.1 미만 설치본은 `~/.gemini/antigravity/skills/`(IDE 레거시), `~/.gemini/antigravity-cli/skills/`와 `~/.gemini/skills/`(CLI 전용)에 남을 수 있다. 해당 표면은 이 경로도 함께 읽으므로 같은 이름의 스킬이 중복 노출된다. 설치 전에 남은 스킬을 제거한다.
+- `-a universal`은 `~/.config/agents/skills/`에 설치하므로 Antigravity에는 쓰지 않는다.
+- 설치 후 경로와 등록 상태를 확인한다.
+
+```sh
+pnpm dlx skills ls -g -a antigravity
+ls ~/.gemini/config/skills
+```
+
 ## Maintain
 
 각 스킬은 루트의 `<skill-name>/SKILL.md`에 둔다. 필요한 참조 문서, 스크립트와 UI 메타데이터는 해당 스킬 디렉터리 안에 둔다.
