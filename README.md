@@ -20,6 +20,7 @@
 - `standardize-interactive-components`: 웹 인터랙션 컴포넌트 통합과 프로젝트 정책 기반 재발 방지 검사.
 - `ui-before-after-sketch`: 구현 전 HTML/CSS Before·After 시안, 상태별 보기와 모션 배속 재생.
 - `use-goodcase-ui`: 동봉된 Goodcase UI 컴포넌트·스타일·토큰·동작 계약을 프로젝트에 적용.
+- `ux-solve`: 실제 제품의 UX 문제를 사례·화면·코드로 진단하고 개선·검증 결과를 기록.
 - `wiki`: 위키 지식 탐색과 요청된 기록·갱신·초기 설정.
 
 ## Install
@@ -45,6 +46,24 @@ pnpm dlx skills add Leonamin/leonamin-skills -g -a codex --skill code-review wik
 ```
 
 `-g`를 빼면 현재 프로젝트에만 설치한다. 다른 도구는 `-a`에 `claude-code`, `opencode`, `reasonix`, `antigravity` 등을 지정한다. 여러 도구를 함께 지정할 수도 있다. 설치 후 에이전트에 스킬 이름과 수행할 작업을 요청한다.
+
+### Antigravity
+
+Antigravity App·CLI·IDE는 전역 스킬을 `~/.gemini/config/skills/`, 작업 공간 스킬을 `<workspace-root>/.agents/skills/`에서 읽는다. Skills CLI는 버전을 지정하지 않으면 실행할 때마다 최신 버전을 확인하므로 그대로 실행한다.
+
+```sh
+pnpm dlx skills add Leonamin/leonamin-skills -g -a antigravity --skill '*' -y
+```
+
+- Antigravity 경로는 Skills CLI 1.8.1부터 `~/.gemini/config/skills/`로 통일되었다. 1.8.1 미만이 실행되면 `~/.gemini/antigravity/skills/`, `~/.gemini/antigravity-cli/skills/`에 설치된다. `pnpm dlx skills --version`으로 확인하고, 필요하면 `pnpm dlx skills@latest ...`로 최신 버전을 강제한다.
+- 기존 `install.sh` 설치본이나 1.8.1 미만 설치본은 `~/.gemini/antigravity/skills/`(IDE 레거시), `~/.gemini/antigravity-cli/skills/`와 `~/.gemini/skills/`(CLI 전용)에 남을 수 있다. 해당 표면은 이 경로도 함께 읽으므로 같은 이름의 스킬이 중복 노출된다. 설치 전에 남은 스킬을 제거한다.
+- `-a universal`은 `~/.config/agents/skills/`에 설치하므로 Antigravity에는 쓰지 않는다.
+- 설치 후 경로와 등록 상태를 확인한다.
+
+```sh
+pnpm dlx skills ls -g -a antigravity
+ls ~/.gemini/config/skills
+```
 
 ## Maintain
 
