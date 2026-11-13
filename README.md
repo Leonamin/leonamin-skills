@@ -20,6 +20,7 @@
 - `standardize-interactive-components`: 웹 인터랙션 컴포넌트 통합과 프로젝트 정책 기반 재발 방지 검사.
 - `ui-before-after-sketch`: 구현 전 HTML/CSS Before·After 시안, 상태별 보기와 모션 배속 재생.
 - `use-goodcase-ui`: 동봉된 Goodcase UI 컴포넌트·스타일·토큰·동작 계약을 프로젝트에 적용.
+- `ux-solve`: 실제 제품의 UX 문제를 사례·화면·코드로 진단하고 개선·검증 결과를 기록.
 - `wiki`: 위키 지식 탐색과 요청된 기록·갱신·초기 설정.
 
 ## Install
