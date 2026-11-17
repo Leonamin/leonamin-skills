@@ -5,6 +5,11 @@ This file is for maintaining the `leonamin-skills` repository itself.
 If installable `AGENTS.md` or `CLAUDE.md` files are needed later, keep their source files
 in a dedicated project-root subdirectory and define their installation separately from skills.
 
+## Git Workflow
+
+- At the end of each round of work, push the work branch, open a PR against `main`, and merge it once required checks pass.
+- After merging, switch to local `main`, fast-forward it from `origin/main`, and delete the merged local work branch.
+
 ## Layout
 
 - Keep each skill as `<skill-name>/SKILL.md` at this repository root.
