@@ -9,6 +9,7 @@ in a dedicated project-root subdirectory and define their installation separatel
 
 - At the end of each round of work, push the work branch, open a PR against `main`, and merge it once required checks pass.
 - After merging, switch to local `main`, fast-forward it from `origin/main`, and delete the merged local work branch.
+- On the current machine, refresh this repository's user-scope skills with the Skills CLI command in README.md → Maintain. Use `--skill` to select skills if any installed names belong to another source.
 
 ## Layout
 
